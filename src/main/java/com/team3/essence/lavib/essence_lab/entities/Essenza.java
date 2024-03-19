@@ -13,6 +13,8 @@ public class Essenza {
     @Column(nullable = false)
     private String allergeni_essenza;
     @Column(nullable = false)
+    private String descrizione_essenza;
+    @Column(nullable = false)
     private Double prezzo_essenza;
     @Column(nullable = false)
     private String ingredienti_essenza;
@@ -21,13 +23,22 @@ public class Essenza {
     private Profumo profumo;
     public Essenza(){}
 
-    public Essenza(Long id, String nome_essenza, String allergeni_essenza, Double prezzo_essenza, String ingredienti_essenza, Profumo profumo) {
+    public Essenza(Long id, String nome_essenza, String allergeni_essenza, Double prezzo_essenza, String ingredienti_essenza, Profumo profumo,String descrizione_essenza) {
         this.id = id;
         this.nome_essenza = nome_essenza;
         this.allergeni_essenza = allergeni_essenza;
         this.prezzo_essenza = prezzo_essenza;
         this.ingredienti_essenza = ingredienti_essenza;
         this.profumo = profumo;
+        this.descrizione_essenza = descrizione_essenza;
+    }
+
+    public String getDescrizione_essenza() {
+        return descrizione_essenza;
+    }
+
+    public void setDescrizione_essenza(String descrizione_essenza) {
+        this.descrizione_essenza = descrizione_essenza;
     }
 
     public Long getId() {

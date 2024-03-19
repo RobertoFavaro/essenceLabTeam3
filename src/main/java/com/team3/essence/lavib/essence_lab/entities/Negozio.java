@@ -18,8 +18,8 @@ public class Negozio {
     private String indirizzo_negozio;
     @Column(nullable = false)
     private String partita_iva_negozio;
-    @ManyToMany
-    private List<Catalogo> lista_di_cataloghi;
+    @OneToMany(mappedBy = "catalogo")
+    private List<Catalogo> cataloghi;
 
     public Negozio(){}
     public Negozio(Long id, String nome_negozio, String luogo_negozio, String indirizzo_negozio, String partita_iva_negozio, List<Catalogo> lista_di_cataloghi) {
@@ -28,7 +28,7 @@ public class Negozio {
         this.luogo_negozio = luogo_negozio;
         this.indirizzo_negozio = indirizzo_negozio;
         this.partita_iva_negozio = partita_iva_negozio;
-        this.lista_di_cataloghi = lista_di_cataloghi;
+        this.cataloghi = lista_di_cataloghi;
     }
 
     public Long getId() {
@@ -72,10 +72,18 @@ public class Negozio {
     }
 
     public List<Catalogo> getLista_di_cataloghi() {
-        return lista_di_cataloghi;
+        return cataloghi;
     }
 
     public void setLista_di_cataloghi(List<Catalogo> lista_di_cataloghi) {
-        this.lista_di_cataloghi = lista_di_cataloghi;
+        this.cataloghi = lista_di_cataloghi;
+    }
+
+    public List<Catalogo> getCataloghi() {
+        return cataloghi;
+    }
+
+    public void setCataloghi(List<Catalogo> cataloghi) {
+        this.cataloghi = cataloghi;
     }
 }

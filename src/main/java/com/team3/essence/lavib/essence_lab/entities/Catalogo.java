@@ -16,13 +16,17 @@ public class Catalogo {
     private Integer capienza_catalogo;
     @OneToMany(mappedBy = "catalogo")
     private List<Profumo> profumi;
+    @ManyToOne
+    @JoinColumn(name = "negozio_id")
+    private Negozio negozio;
 
     public Catalogo(){}
-    public Catalogo(Long id, String nome_catalogo, Integer capienza_catalogo, List<Profumo> profumi) {
+    public Catalogo(Long id, String nome_catalogo, Integer capienza_catalogo, List<Profumo> profumi, Negozio negozio) {
         this.id = id;
         this.nome_catalogo = nome_catalogo;
         this.capienza_catalogo = capienza_catalogo;
         this.profumi = profumi;
+        this.negozio = negozio;
     }
 
     public Long getId() {
@@ -39,6 +43,14 @@ public class Catalogo {
 
     public void setNome_catalogo(String nome_catalogo) {
         this.nome_catalogo = nome_catalogo;
+    }
+
+    public Negozio getNegozio() {
+        return negozio;
+    }
+
+    public void setNegozio(Negozio negozio) {
+        this.negozio = negozio;
     }
 
     public Integer getCapienza_catalogo() {

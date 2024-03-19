@@ -31,13 +31,14 @@ public class Profumo {
     private EnumTipoProfumo enumTipoProfumo;
 
     public Profumo(){}
-    public Profumo(Long id, String nome_profumo, String marca_profumo, String descrizione_profumo, String ingredienti_profumo, Double prezzo_profumo, String allergeni_profumo, List<Essenza> essenze, EnumTipoProfumo enumTipoProfumo) {
+    public Profumo(Long id, String nome_profumo, String marca_profumo, String descrizione_profumo, String ingredienti_profumo, Double prezzo_profumo,Catalogo catalogo, String allergeni_profumo, List<Essenza> essenze, EnumTipoProfumo enumTipoProfumo) {
         this.id = id;
         this.nome_profumo = nome_profumo;
         this.marca_profumo = marca_profumo;
         this.descrizione_profumo = descrizione_profumo;
         this.ingredienti_profumo = ingredienti_profumo;
         this.prezzo_profumo = prezzo_profumo;
+        this.catalogo = catalogo;
         this.allergeni_profumo = allergeni_profumo;
         this.essenze = essenze;
         this.enumTipoProfumo = enumTipoProfumo;
@@ -61,6 +62,14 @@ public class Profumo {
 
     public String getMarca_profumo() {
         return marca_profumo;
+    }
+
+    public Catalogo getCatalogo() {
+        return catalogo;
+    }
+
+    public void setCatalogo(Catalogo catalogo) {
+        this.catalogo = catalogo;
     }
 
     public void setMarca_profumo(String marca_profumo) {
