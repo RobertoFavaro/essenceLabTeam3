@@ -15,17 +15,32 @@ public class CatalogoController {
     @Autowired
     private CatalogoService catalogoService;
 
+    /**
+     *
+     * @param catalogToAdd
+     * @return negozio aggiunto.
+     */
     @PostMapping("/addCatalog")
     public ResponseEntity<Catalogo> postEvento(@RequestBody Catalogo catalogToAdd) {
         Catalogo catalogoAdded = catalogoService.addCatalog(catalogToAdd);
         return ResponseEntity.ok().body(catalogoAdded);
     }
 
+    /**
+     *
+     * @return  mostra la lista completa dei negozi.
+     */
     @GetMapping("/getAllCatalogs")
     public ResponseEntity<List<Catalogo>> getCatalogs() {
         List<Catalogo> catalogoView = catalogoService.getCatalogs();
         return ResponseEntity.ok().body(catalogoView);
     }
+
+    /**
+     *
+     * @param id con l'id cerca negozio
+     * @return mostra il negozio trovato o se non esiste mostra "not found".
+     */
 
     @GetMapping("/getSingleCatalog/{id}")
     public ResponseEntity<Catalogo> getCatalog(@PathVariable Long id) {
@@ -36,6 +51,12 @@ public class CatalogoController {
         return ResponseEntity.ok().body(catalogOptional.get());
     }
 
+    /**
+     *
+     * @param id con l'id cerca i negozi
+     * @param catalog
+     * @return mostra i negozi aggiornati se ci sono altrimenti mostra "not found"
+     */
     @PutMapping("/put/{id}")
     public ResponseEntity<Catalogo> updateCatalog(
             @PathVariable Long id,
@@ -47,6 +68,11 @@ public class CatalogoController {
         return ResponseEntity.ok().body(catalogOptional.get());
     }
 
+    /**
+     *
+     * @param id con l'id cerca i negozi
+     * @return mostra i negozi elminati se ci sono altrimenti mostra "not found"
+     */
     @DeleteMapping("/deleteCatalog/{id}")
     public ResponseEntity<Catalogo> deleteEventoById(@PathVariable Long id) {
         Optional<Catalogo> catalogOptional = catalogoService.deleteCatalogById(id);

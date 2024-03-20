@@ -13,17 +13,39 @@ public class CatalogoService {
     @Autowired
     private CatalogoRepository catalogoRepository;
 
+    /**
+     *
+     * @param catalogToAdd
+     * @return Salva l'oggetto e lo ritorna;
+     */
     public Catalogo addCatalog(Catalogo catalogToAdd) {
         return catalogoRepository.save(catalogToAdd);
     }
+
+    /**
+     *
+     * @return mostra la lista di tutti i negozi;
+     */
 
     public List<Catalogo> getCatalogs() {
         return catalogoRepository.findAll();
     }
 
+    /**
+     *
+     * @param id
+     * @return mostra i negozi cercata tramite id;
+     */
     public Optional<Catalogo> getCatalog(Long id) {
         return catalogoRepository.findById(id);
     }
+
+    /**
+     *
+     * @param catalog per cercare il negozio da aggiornare
+     * @param id
+     * @return mostra il negozio aggiornata o un oggetto vuoto se non è presente
+     */
 
     public Optional<Catalogo> updateCatalog(Catalogo catalog, Long id) {
         Optional<Catalogo> catalogOptional = catalogoRepository.findById(id);
@@ -40,6 +62,12 @@ public class CatalogoService {
             return Optional.empty();
         }
     }
+
+    /**
+     *
+     * @param id per cercare il negozio da eliminare
+     * @return mostra il negozio eliminata o un oggetto vuoto se non esiste
+     */
 
     public Optional<Catalogo> deleteCatalogById(Long id) {
         Optional<Catalogo> catalogOptional = catalogoRepository.findById(id);
