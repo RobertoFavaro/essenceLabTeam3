@@ -3,7 +3,6 @@ package com.team3.essence.lavib.essence_lab.entities;
 import com.team3.essence.lavib.essence_lab.Enum.RecordStatusEnum;
 import jakarta.persistence.*;
 import org.antlr.v4.runtime.misc.NotNull;
-import org.hibernate.annotations.NotFound;
 import org.springframework.lang.NonNull;
 
 @Table

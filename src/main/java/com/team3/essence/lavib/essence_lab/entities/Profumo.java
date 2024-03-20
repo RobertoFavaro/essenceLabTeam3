@@ -1,10 +1,12 @@
 package com.team3.essence.lavib.essence_lab.entities;
 
+import com.team3.essence.lavib.essence_lab.Enum.EnumMarcaProfumo;
 import com.team3.essence.lavib.essence_lab.Enum.EnumTipoProfumo;
 import com.team3.essence.lavib.essence_lab.Enum.RecordStatusEnum;
 import jakarta.persistence.*;
 import org.antlr.v4.runtime.misc.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Table
@@ -15,8 +17,6 @@ public class Profumo {
     private Long id;
     @Column(nullable = false)
     private String nome_profumo;
-    @Column(nullable = false)
-    private String marca_profumo;
     @Column(nullable = false)
     private String descrizione_profumo;
     @Column(nullable = false)
@@ -36,28 +36,23 @@ public class Profumo {
     private RecordStatusEnum recordStatusEnum =  RecordStatusEnum .A;
     @Enumerated(EnumType.STRING)
     private EnumTipoProfumo enumTipoProfumo;
+    @Enumerated(EnumType.STRING)
+    private EnumMarcaProfumo enumMarcaProfumo;
 
     public Profumo(){}
-    public Profumo(Long id, String nome_profumo, String marca_profumo, String descrizione_profumo, String ingredienti_profumo, Double prezzo_profumo,Catalogo catalogo, String allergeni_profumo, List<Essenza> essenze, EnumTipoProfumo enumTipoProfumo, RecordStatusEnum recordStatusEnum) {
+
+    public Profumo(Long id, String nome_profumo, String descrizione_profumo, String ingredienti_profumo, Double prezzo_profumo, String allergeni_profumo, Catalogo catalogo, RecordStatusEnum recordStatusEnum, EnumTipoProfumo enumTipoProfumo, EnumMarcaProfumo enumMarcaProfumo) {
         this.id = id;
         this.nome_profumo = nome_profumo;
-        this.marca_profumo = marca_profumo;
         this.descrizione_profumo = descrizione_profumo;
         this.ingredienti_profumo = ingredienti_profumo;
         this.prezzo_profumo = prezzo_profumo;
-        this.catalogo = catalogo;
         this.allergeni_profumo = allergeni_profumo;
-        this.essenze = essenze;
+        this.essenze = new ArrayList<>();
+        this.catalogo = catalogo;
+        this.recordStatusEnum = recordStatusEnum;
         this.enumTipoProfumo = enumTipoProfumo;
-        this.recordStatusEnum = recordStatusEnum;
-    }
-
-    public RecordStatusEnum getRecordStatusEnum() {
-        return recordStatusEnum;
-    }
-
-    public void setRecordStatusEnum(RecordStatusEnum recordStatusEnum) {
-        this.recordStatusEnum = recordStatusEnum;
+        this.enumMarcaProfumo = enumMarcaProfumo;
     }
 
     public Long getId() {
@@ -74,22 +69,6 @@ public class Profumo {
 
     public void setNome_profumo(String nome_profumo) {
         this.nome_profumo = nome_profumo;
-    }
-
-    public String getMarca_profumo() {
-        return marca_profumo;
-    }
-
-    public Catalogo getCatalogo() {
-        return catalogo;
-    }
-
-    public void setCatalogo(Catalogo catalogo) {
-        this.catalogo = catalogo;
-    }
-
-    public void setMarca_profumo(String marca_profumo) {
-        this.marca_profumo = marca_profumo;
     }
 
     public String getDescrizione_profumo() {
@@ -132,11 +111,35 @@ public class Profumo {
         this.essenze = essenze;
     }
 
+    public Catalogo getCatalogo() {
+        return catalogo;
+    }
+
+    public void setCatalogo(Catalogo catalogo) {
+        this.catalogo = catalogo;
+    }
+
+    public RecordStatusEnum getRecordStatusEnum() {
+        return recordStatusEnum;
+    }
+
+    public void setRecordStatusEnum(RecordStatusEnum recordStatusEnum) {
+        this.recordStatusEnum = recordStatusEnum;
+    }
+
     public EnumTipoProfumo getEnumTipoProfumo() {
         return enumTipoProfumo;
     }
 
     public void setEnumTipoProfumo(EnumTipoProfumo enumTipoProfumo) {
         this.enumTipoProfumo = enumTipoProfumo;
+    }
+
+    public EnumMarcaProfumo getEnumMarcaProfumo() {
+        return enumMarcaProfumo;
+    }
+
+    public void setEnumMarcaProfumo(EnumMarcaProfumo enumMarcaProfumo) {
+        this.enumMarcaProfumo = enumMarcaProfumo;
     }
 }

@@ -4,13 +4,13 @@ public enum RecordStatusEnum {
     A("Attivo"),
     I("Inattivo");
 
-    private String description;
+    private String descrzione;
 
-    RecordStatusEnum(String description) {
-        this.description = description;
+    RecordStatusEnum(String descrzione) {
+        this.descrzione = descrzione;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescrzione() {
+        return descrzione;
     }
 }

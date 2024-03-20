@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.springframework.lang.NonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Table
@@ -31,11 +32,11 @@ public class Catalogo {
     private EnumTipoCatalogo enumTipoCatalogo;
 
     public Catalogo(){}
-    public Catalogo(Long id, String nome_catalogo, Integer capienza_catalogo, List<Profumo> profumi, Negozio negozio, RecordStatusEnum recordStatusEnum, EnumTipoCatalogo enumTipoCatalogo) {
+    public Catalogo(Long id, String nome_catalogo, Integer capienza_catalogo, Negozio negozio, RecordStatusEnum recordStatusEnum, EnumTipoCatalogo enumTipoCatalogo) {
         this.id = id;
         this.nome_catalogo = nome_catalogo;
         this.capienza_catalogo = capienza_catalogo;
-        this.profumi = profumi;
+        this.profumi = new ArrayList<>();
         this.negozio = negozio;
         this.recordStatusEnum = recordStatusEnum;
         this.enumTipoCatalogo = enumTipoCatalogo;

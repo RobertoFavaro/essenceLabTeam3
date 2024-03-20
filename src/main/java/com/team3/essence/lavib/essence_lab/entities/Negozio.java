@@ -4,6 +4,7 @@ import com.team3.essence.lavib.essence_lab.Enum.RecordStatusEnum;
 import jakarta.persistence.*;
 import org.antlr.v4.runtime.misc.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Table
@@ -28,13 +29,13 @@ public class Negozio {
     private RecordStatusEnum recordStatusEnum =  RecordStatusEnum .A;
 
     public Negozio(){}
-    public Negozio(Long id, String nome_negozio, String luogo_negozio, String indirizzo_negozio, String partita_iva_negozio, List<Catalogo> lista_di_cataloghi, RecordStatusEnum recordStatusEnum) {
+    public Negozio(Long id, String nome_negozio, String luogo_negozio, String indirizzo_negozio, String partita_iva_negozio, RecordStatusEnum recordStatusEnum) {
         this.id = id;
         this.nome_negozio = nome_negozio;
         this.luogo_negozio = luogo_negozio;
         this.indirizzo_negozio = indirizzo_negozio;
         this.partita_iva_negozio = partita_iva_negozio;
-        this.cataloghi = lista_di_cataloghi;
+        this.cataloghi = new ArrayList<>();
         this.recordStatusEnum = recordStatusEnum;
     }
 
