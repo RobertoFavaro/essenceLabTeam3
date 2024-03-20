@@ -18,7 +18,7 @@ public class CatalogoController {
     /**
      *
      * @param catalogToAdd
-     * @return negozio aggiunto.
+     * @return catalogo aggiunto.
      */
     @PostMapping("/addCatalog")
     public ResponseEntity<Catalogo> postEvento(@RequestBody Catalogo catalogToAdd) {
@@ -28,7 +28,7 @@ public class CatalogoController {
 
     /**
      *
-     * @return  mostra la lista completa dei negozi.
+     * @return  mostra la lista completa dei cataloghi.
      */
     @GetMapping("/getAllCatalogs")
     public ResponseEntity<List<Catalogo>> getCatalogs() {
@@ -38,8 +38,8 @@ public class CatalogoController {
 
     /**
      *
-     * @param id con l'id cerca negozio
-     * @return mostra il negozio trovato o se non esiste mostra "not found".
+     * @param id con l'id cerca catalogo
+     * @return mostra il catalogo trovato o se non esiste mostra "not found".
      */
 
     @GetMapping("/getSingleCatalog/{id}")
@@ -53,9 +53,9 @@ public class CatalogoController {
 
     /**
      *
-     * @param id con l'id cerca i negozi
+     * @param id con l'id cerca i cataloghi
      * @param catalog
-     * @return mostra i negozi aggiornati se ci sono altrimenti mostra "not found"
+     * @return mostra i cataloghi aggiornati se ci sono altrimenti mostra "not found"
      */
     @PutMapping("/put/{id}")
     public ResponseEntity<Catalogo> updateCatalog(
@@ -70,8 +70,8 @@ public class CatalogoController {
 
     /**
      *
-     * @param id con l'id cerca i negozi
-     * @return mostra i negozi elminati se ci sono altrimenti mostra "not found"
+     * @param id con l'id cerca i cataloghi
+     * @return mostra i cataloghi elminati se ci sono altrimenti mostra "not found"
      */
     @DeleteMapping("/deleteCatalog/{id}")
     public ResponseEntity<Catalogo> deleteEventoById(@PathVariable Long id) {

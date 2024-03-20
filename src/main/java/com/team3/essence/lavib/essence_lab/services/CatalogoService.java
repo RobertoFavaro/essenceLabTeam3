@@ -24,7 +24,7 @@ public class CatalogoService {
 
     /**
      *
-     * @return mostra la lista di tutti i negozi;
+     * @return mostra la lista di tutti i cataloghi;
      */
 
     public List<Catalogo> getCatalogs() {
@@ -34,7 +34,7 @@ public class CatalogoService {
     /**
      *
      * @param id
-     * @return mostra i negozi cercata tramite id;
+     * @return mostra i cataloghi cercata tramite id;
      */
     public Optional<Catalogo> getCatalog(Long id) {
         return catalogoRepository.findById(id);
@@ -42,9 +42,9 @@ public class CatalogoService {
 
     /**
      *
-     * @param catalog per cercare il negozio da aggiornare
+     * @param catalog per cercare il catalogo da aggiornare
      * @param id
-     * @return mostra il negozio aggiornata o un oggetto vuoto se non è presente
+     * @return mostra il catalogo aggiornata o un oggetto vuoto se non è presente
      */
 
     public Optional<Catalogo> updateCatalog(Catalogo catalog, Long id) {
@@ -65,8 +65,8 @@ public class CatalogoService {
 
     /**
      *
-     * @param id per cercare il negozio da eliminare
-     * @return mostra il negozio eliminata o un oggetto vuoto se non esiste
+     * @param id per cercare il catalogo da eliminare
+     * @return mostra il catalogo eliminata o un oggetto vuoto se non esiste
      */
 
     public Optional<Catalogo> deleteCatalogById(Long id) {
