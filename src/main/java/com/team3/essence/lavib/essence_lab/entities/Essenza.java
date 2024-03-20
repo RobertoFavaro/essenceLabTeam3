@@ -1,6 +1,10 @@
 package com.team3.essence.lavib.essence_lab.entities;
 
+import com.team3.essence.lavib.essence_lab.Enum.EnumTipoEssenza;
+import com.team3.essence.lavib.essence_lab.Enum.RecordStatusEnum;
 import jakarta.persistence.*;
+import org.antlr.v4.runtime.misc.NotNull;
+import org.springframework.lang.NonNull;
 
 @Table
 @Entity
@@ -21,9 +25,15 @@ public class Essenza {
     @ManyToOne
     @JoinColumn(name = "profumo_id")
     private Profumo profumo;
+    @Enumerated(EnumType.STRING)
+    @NotNull
+    @Column(name = "record_status", nullable = false, length = 1)
+    private RecordStatusEnum recordStatusEnum =  RecordStatusEnum .A;
+    @Enumerated(EnumType.STRING)
+    private EnumTipoEssenza enumTipoEssenza;
     public Essenza(){}
 
-    public Essenza(Long id, String nome_essenza, String allergeni_essenza, Double prezzo_essenza, String ingredienti_essenza, Profumo profumo,String descrizione_essenza) {
+    public Essenza(Long id, String nome_essenza, String allergeni_essenza, Double prezzo_essenza, String ingredienti_essenza, Profumo profumo,String descrizione_essenza, RecordStatusEnum recordStatusEnum) {
         this.id = id;
         this.nome_essenza = nome_essenza;
         this.allergeni_essenza = allergeni_essenza;
@@ -31,6 +41,23 @@ public class Essenza {
         this.ingredienti_essenza = ingredienti_essenza;
         this.profumo = profumo;
         this.descrizione_essenza = descrizione_essenza;
+        this.recordStatusEnum = recordStatusEnum;
+    }
+
+    public EnumTipoEssenza getEnumTipoEssenza() {
+        return enumTipoEssenza;
+    }
+
+    public void setEnumTipoEssenza(EnumTipoEssenza enumTipoEssenza) {
+        this.enumTipoEssenza = enumTipoEssenza;
+    }
+
+    public RecordStatusEnum getRecordStatusEnum() {
+        return recordStatusEnum;
+    }
+
+    public void setRecordStatusEnum(RecordStatusEnum recordStatusEnum) {
+        this.recordStatusEnum = recordStatusEnum;
     }
 
     public String getDescrizione_essenza() {

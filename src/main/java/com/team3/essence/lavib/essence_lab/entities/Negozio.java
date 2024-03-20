@@ -1,6 +1,8 @@
 package com.team3.essence.lavib.essence_lab.entities;
 
+import com.team3.essence.lavib.essence_lab.Enum.RecordStatusEnum;
 import jakarta.persistence.*;
+import org.antlr.v4.runtime.misc.NotNull;
 
 import java.util.List;
 
@@ -18,17 +20,30 @@ public class Negozio {
     private String indirizzo_negozio;
     @Column(nullable = false)
     private String partita_iva_negozio;
-    @OneToMany(mappedBy = "catalogo")
+    @OneToMany(mappedBy = "negozio")
     private List<Catalogo> cataloghi;
+    @Enumerated(EnumType.STRING)
+    @NotNull
+    @Column(name = "record_status", nullable = false, length = 1)
+    private RecordStatusEnum recordStatusEnum =  RecordStatusEnum .A;
 
     public Negozio(){}
-    public Negozio(Long id, String nome_negozio, String luogo_negozio, String indirizzo_negozio, String partita_iva_negozio, List<Catalogo> lista_di_cataloghi) {
+    public Negozio(Long id, String nome_negozio, String luogo_negozio, String indirizzo_negozio, String partita_iva_negozio, List<Catalogo> lista_di_cataloghi, RecordStatusEnum recordStatusEnum) {
         this.id = id;
         this.nome_negozio = nome_negozio;
         this.luogo_negozio = luogo_negozio;
         this.indirizzo_negozio = indirizzo_negozio;
         this.partita_iva_negozio = partita_iva_negozio;
         this.cataloghi = lista_di_cataloghi;
+        this.recordStatusEnum = recordStatusEnum;
+    }
+
+    public RecordStatusEnum getRecordStatusEnum() {
+        return recordStatusEnum;
+    }
+
+    public void setRecordStatusEnum(RecordStatusEnum recordStatusEnum) {
+        this.recordStatusEnum = recordStatusEnum;
     }
 
     public Long getId() {

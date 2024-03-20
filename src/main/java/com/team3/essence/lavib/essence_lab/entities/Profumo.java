@@ -1,7 +1,9 @@
 package com.team3.essence.lavib.essence_lab.entities;
 
 import com.team3.essence.lavib.essence_lab.Enum.EnumTipoProfumo;
+import com.team3.essence.lavib.essence_lab.Enum.RecordStatusEnum;
 import jakarta.persistence.*;
+import org.antlr.v4.runtime.misc.NotNull;
 
 import java.util.List;
 
@@ -28,10 +30,15 @@ public class Profumo {
     @ManyToOne
     @JoinColumn(name = "catalogo_id")
     private Catalogo catalogo;
+    @Enumerated(EnumType.STRING)
+    @NotNull
+    @Column(name = "record_status", nullable = false, length = 1)
+    private RecordStatusEnum recordStatusEnum =  RecordStatusEnum .A;
+    @Enumerated(EnumType.STRING)
     private EnumTipoProfumo enumTipoProfumo;
 
     public Profumo(){}
-    public Profumo(Long id, String nome_profumo, String marca_profumo, String descrizione_profumo, String ingredienti_profumo, Double prezzo_profumo,Catalogo catalogo, String allergeni_profumo, List<Essenza> essenze, EnumTipoProfumo enumTipoProfumo) {
+    public Profumo(Long id, String nome_profumo, String marca_profumo, String descrizione_profumo, String ingredienti_profumo, Double prezzo_profumo,Catalogo catalogo, String allergeni_profumo, List<Essenza> essenze, EnumTipoProfumo enumTipoProfumo, RecordStatusEnum recordStatusEnum) {
         this.id = id;
         this.nome_profumo = nome_profumo;
         this.marca_profumo = marca_profumo;
@@ -42,6 +49,15 @@ public class Profumo {
         this.allergeni_profumo = allergeni_profumo;
         this.essenze = essenze;
         this.enumTipoProfumo = enumTipoProfumo;
+        this.recordStatusEnum = recordStatusEnum;
+    }
+
+    public RecordStatusEnum getRecordStatusEnum() {
+        return recordStatusEnum;
+    }
+
+    public void setRecordStatusEnum(RecordStatusEnum recordStatusEnum) {
+        this.recordStatusEnum = recordStatusEnum;
     }
 
     public Long getId() {

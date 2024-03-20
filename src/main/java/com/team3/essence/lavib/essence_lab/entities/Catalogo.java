@@ -1,6 +1,10 @@
 package com.team3.essence.lavib.essence_lab.entities;
 
+import com.team3.essence.lavib.essence_lab.Enum.EnumTipoCatalogo;
+import com.team3.essence.lavib.essence_lab.Enum.RecordStatusEnum;
 import jakarta.persistence.*;
+import org.antlr.v4.runtime.misc.NotNull;
+import org.springframework.lang.NonNull;
 
 import java.util.List;
 
@@ -19,14 +23,39 @@ public class Catalogo {
     @ManyToOne
     @JoinColumn(name = "negozio_id")
     private Negozio negozio;
+    @Enumerated(EnumType.STRING)
+    @NotNull
+    @Column(name = "record_status", nullable = false, length = 1)
+    private RecordStatusEnum recordStatusEnum =  RecordStatusEnum .A;
+    @Enumerated(EnumType.STRING)
+    private EnumTipoCatalogo enumTipoCatalogo;
 
     public Catalogo(){}
-    public Catalogo(Long id, String nome_catalogo, Integer capienza_catalogo, List<Profumo> profumi, Negozio negozio) {
+    public Catalogo(Long id, String nome_catalogo, Integer capienza_catalogo, List<Profumo> profumi, Negozio negozio, RecordStatusEnum recordStatusEnum, EnumTipoCatalogo enumTipoCatalogo) {
         this.id = id;
         this.nome_catalogo = nome_catalogo;
         this.capienza_catalogo = capienza_catalogo;
         this.profumi = profumi;
         this.negozio = negozio;
+        this.recordStatusEnum = recordStatusEnum;
+        this.enumTipoCatalogo = enumTipoCatalogo;
+    }
+
+    @NonNull
+    public RecordStatusEnum getRecordStatusEnum() {
+        return recordStatusEnum;
+    }
+
+    public void setRecordStatusEnum(@NonNull RecordStatusEnum recordStatusEnum) {
+        this.recordStatusEnum = recordStatusEnum;
+    }
+
+    public EnumTipoCatalogo getEnumTipoCatalogo() {
+        return enumTipoCatalogo;
+    }
+
+    public void setEnumTipoCatalogo(EnumTipoCatalogo enumTipoCatalogo) {
+        this.enumTipoCatalogo = enumTipoCatalogo;
     }
 
     public Long getId() {

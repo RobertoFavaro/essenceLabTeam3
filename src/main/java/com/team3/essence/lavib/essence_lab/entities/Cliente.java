@@ -1,6 +1,10 @@
 package com.team3.essence.lavib.essence_lab.entities;
 
+import com.team3.essence.lavib.essence_lab.Enum.RecordStatusEnum;
 import jakarta.persistence.*;
+import org.antlr.v4.runtime.misc.NotNull;
+import org.hibernate.annotations.NotFound;
+import org.springframework.lang.NonNull;
 
 @Table
 @Entity
@@ -22,9 +26,13 @@ public class Cliente {
     private Integer eta_cliente;
     @Column(nullable = false)
     private String indirizzo_cliente;
+    @Enumerated(EnumType.STRING)
+    @NotNull
+    @Column(name = "record_status", nullable = false, length = 1)
+    private RecordStatusEnum recordStatusEnum =  RecordStatusEnum .A;
 
     public Cliente(){}
-    public Cliente(Long id, String nome_cliente, String cognome_cliente, String genere_cliente, String email_cliente, String codiceFiscale_cliente, Integer eta_cliente, String indirizzo_cliente) {
+    public Cliente(Long id, String nome_cliente, String cognome_cliente, String genere_cliente, String email_cliente, String codiceFiscale_cliente, Integer eta_cliente, String indirizzo_cliente, RecordStatusEnum recordStatusEnum) {
         this.id = id;
         this.nome_cliente = nome_cliente;
         this.cognome_cliente = cognome_cliente;
@@ -33,6 +41,16 @@ public class Cliente {
         this.codiceFiscale_cliente = codiceFiscale_cliente;
         this.eta_cliente = eta_cliente;
         this.indirizzo_cliente = indirizzo_cliente;
+        this.recordStatusEnum = recordStatusEnum;
+    }
+
+    @NonNull
+    public RecordStatusEnum getRecordStatusEnum() {
+        return recordStatusEnum;
+    }
+
+    public void setRecordStatusEnum(@NonNull RecordStatusEnum recordStatusEnum) {
+        this.recordStatusEnum = recordStatusEnum;
     }
 
     public Long getId() {
