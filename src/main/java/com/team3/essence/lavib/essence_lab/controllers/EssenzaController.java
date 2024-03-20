@@ -11,7 +11,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/essenza")
-
 public class EssenzaController {
     @Autowired
     private EssenzaService essenzaService;
@@ -23,7 +22,8 @@ public class EssenzaController {
      */
     @PutMapping("/add")
     public ResponseEntity<Essenza> addEssenza(@RequestBody Essenza essenza){
-       return ResponseEntity.ok().body(essenzaService.addEssenza(essenza));
+        Essenza essenzaAdded = essenzaService.addEssenza(essenza);
+       return ResponseEntity.ok().body(essenzaAdded);
     }
 
     /**
@@ -32,7 +32,8 @@ public class EssenzaController {
      */
     @GetMapping("/getListaEssenza")
     public ResponseEntity<List<Essenza>> getListaEssenza(){
-        return ResponseEntity.ok().body(essenzaService.getAllEssenze());
+        List<Essenza> essenzaView = essenzaService.getAllEssenze();
+        return ResponseEntity.ok().body(essenzaView);
     }
 
     /**

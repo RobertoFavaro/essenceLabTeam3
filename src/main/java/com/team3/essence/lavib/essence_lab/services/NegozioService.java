@@ -52,8 +52,9 @@ public class NegozioService {
             updateNegozio.get().setRecordStatusEnum(negozio.getRecordStatusEnum());
             Negozio negozioUpdate = negozioRepository.save(updateNegozio.get());
             return Optional.of(negozioUpdate);
+        }else{
+            return Optional.empty();
         }
-        return Optional.empty();
     }
 
     /**

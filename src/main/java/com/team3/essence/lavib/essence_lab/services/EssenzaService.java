@@ -55,8 +55,9 @@ public class EssenzaService {
             updateEssenza.get().setIngredienti_essenza(essenza.getIngredienti_essenza());
             Essenza essenzaUpdate = essenzaRepository.save(updateEssenza.get());
             return Optional.of(essenzaUpdate);
+        }else{
+            return Optional.empty();
         }
-        return Optional.empty();
     }
 
     /**

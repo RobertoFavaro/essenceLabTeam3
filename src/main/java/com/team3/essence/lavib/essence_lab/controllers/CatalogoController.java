@@ -17,12 +17,14 @@ public class CatalogoController {
 
     @PostMapping("/addCatalog")
     public ResponseEntity<Catalogo> postEvento(@RequestBody Catalogo catalogToAdd) {
-        return ResponseEntity.ok().body(catalogoService.addCatalog(catalogToAdd));
+        Catalogo catalogoAdded = catalogoService.addCatalog(catalogToAdd);
+        return ResponseEntity.ok().body(catalogoAdded);
     }
 
     @GetMapping("/getAllCatalogs")
     public ResponseEntity<List<Catalogo>> getCatalogs() {
-        return ResponseEntity.ok().body(catalogoService.getCatalogs());
+        List<Catalogo> catalogoView = catalogoService.getCatalogs();
+        return ResponseEntity.ok().body(catalogoView);
     }
 
     @GetMapping("/getSingleCatalog/{id}")

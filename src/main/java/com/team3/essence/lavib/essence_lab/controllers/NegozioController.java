@@ -21,7 +21,8 @@ public class NegozioController {
      */
     @PutMapping("/add")
     public ResponseEntity<Negozio> addNegozio(@RequestBody Negozio negozio){
-        return ResponseEntity.ok().body(negozioService.addNegozio(negozio));
+        Negozio negozioAdded = negozioService.addNegozio(negozio);
+        return ResponseEntity.ok().body(negozioAdded);
     }
 
     /**
@@ -29,7 +30,8 @@ public class NegozioController {
      */
     @GetMapping ("/getlistnegozio")
     public ResponseEntity<List<Negozio>> getListaNegozio (){
-        return ResponseEntity.ok().body(negozioService.getAllNegozio());
+        List<Negozio> negozioView = negozioService.getAllNegozio();
+        return ResponseEntity.ok().body(negozioView);
     }
 
     /**
