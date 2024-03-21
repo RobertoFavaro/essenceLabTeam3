@@ -57,7 +57,7 @@ public class CatalogoController {
      * @param catalog
      * @return mostra i cataloghi aggiornati se ci sono altrimenti mostra "not found"
      */
-    @PutMapping("/put/{id}")
+    @PutMapping("/updateCatalog/{id}")
     public ResponseEntity<Catalogo> updateCatalog(
             @PathVariable Long id,
             @RequestBody Catalogo catalog) {
