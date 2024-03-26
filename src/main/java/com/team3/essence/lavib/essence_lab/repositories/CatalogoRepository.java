@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.nio.file.LinkOption;
 @Repository
 public interface CatalogoRepository extends JpaRepository<Catalogo, Long> {
+
+    //TODO in ogni classe va fatta la lettura di solo recrdo con recordstatus ad A (custom query)
 }
