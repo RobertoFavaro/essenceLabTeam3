@@ -74,7 +74,7 @@ public class CatalogoController {
      * @return mostra i cataloghi elminati se ci sono altrimenti mostra "not found"
      */
     @DeleteMapping("/deleteCatalog/{id}")
-    public ResponseEntity<Catalogo> deleteEventoById(@PathVariable Long id) {
+    public ResponseEntity<Catalogo> deleteCatalogoById(@PathVariable Long id) {
         Optional<Catalogo> catalogOptional = catalogoService.deleteCatalogById(id);
         if (catalogOptional.isEmpty()) {
             return ResponseEntity.notFound().build();
