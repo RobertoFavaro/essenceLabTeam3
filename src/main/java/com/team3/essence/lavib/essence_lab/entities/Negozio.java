@@ -21,7 +21,7 @@ public class Negozio {
     private String indirizzo_negozio;
     @Column(nullable = false)
     private String partita_iva_negozio;
-    @OneToMany(mappedBy = "catalogo")
+    @OneToMany(mappedBy = "profumo")
     private List<Profumo> profumi;
     @Enumerated(EnumType.STRING)
     @NotNull
