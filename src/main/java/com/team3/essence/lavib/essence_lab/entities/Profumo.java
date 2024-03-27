@@ -1,5 +1,6 @@
 package com.team3.essence.lavib.essence_lab.entities;
 
+import com.team3.essence.lavib.essence_lab.Enum.EnumCategoriaProfumo;
 import com.team3.essence.lavib.essence_lab.Enum.EnumMarcaProfumo;
 import com.team3.essence.lavib.essence_lab.Enum.EnumTipoProfumo;
 import com.team3.essence.lavib.essence_lab.Enum.RecordStatusEnum;
@@ -28,8 +29,8 @@ public class Profumo {
     @OneToMany(mappedBy = "profumo")
     private List<Essenza> essenze;
     @ManyToOne
-    @JoinColumn(name = "catalogo_id")
-    private Catalogo catalogo;
+    @JoinColumn(name = "negozio_id")
+    private Negozio negozio;
     @Enumerated(EnumType.STRING)
     @NotNull
     @Column(name = "record_status", nullable = false, length = 1)
@@ -38,10 +39,12 @@ public class Profumo {
     private EnumTipoProfumo enumTipoProfumo;
     @Enumerated(EnumType.STRING)
     private EnumMarcaProfumo enumMarcaProfumo;
+    @Enumerated(EnumType.STRING)
+    private EnumCategoriaProfumo enumCategoriaProfumo;
 
     public Profumo(){}
 
-    public Profumo(Long id, String nome_profumo, String descrizione_profumo, String ingredienti_profumo, Double prezzo_profumo, String allergeni_profumo, Catalogo catalogo, RecordStatusEnum recordStatusEnum, EnumTipoProfumo enumTipoProfumo, EnumMarcaProfumo enumMarcaProfumo) {
+    public Profumo(Long id, String nome_profumo, String descrizione_profumo, String ingredienti_profumo, Double prezzo_profumo, String allergeni_profumo, RecordStatusEnum recordStatusEnum, EnumTipoProfumo enumTipoProfumo, EnumMarcaProfumo enumMarcaProfumo) {
         this.id = id;
         this.nome_profumo = nome_profumo;
         this.descrizione_profumo = descrizione_profumo;
@@ -49,7 +52,6 @@ public class Profumo {
         this.prezzo_profumo = prezzo_profumo;
         this.allergeni_profumo = allergeni_profumo;
         this.essenze = new ArrayList<>();
-        this.catalogo = catalogo;
         this.recordStatusEnum = recordStatusEnum;
         this.enumTipoProfumo = enumTipoProfumo;
         this.enumMarcaProfumo = enumMarcaProfumo;
@@ -109,14 +111,6 @@ public class Profumo {
 
     public void setEssenze(List<Essenza> essenze) {
         this.essenze = essenze;
-    }
-
-    public Catalogo getCatalogo() {
-        return catalogo;
-    }
-
-    public void setCatalogo(Catalogo catalogo) {
-        this.catalogo = catalogo;
     }
 
     public RecordStatusEnum getRecordStatusEnum() {

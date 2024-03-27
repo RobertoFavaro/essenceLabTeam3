@@ -21,8 +21,8 @@ public class Negozio {
     private String indirizzo_negozio;
     @Column(nullable = false)
     private String partita_iva_negozio;
-    @OneToMany(mappedBy = "negozio")
-    private List<Catalogo> cataloghi;
+    @OneToMany(mappedBy = "catalogo")
+    private List<Profumo> profumi;
     @Enumerated(EnumType.STRING)
     @NotNull
     @Column(name = "record_status", nullable = false, length = 1)
@@ -35,7 +35,6 @@ public class Negozio {
         this.luogo_negozio = luogo_negozio;
         this.indirizzo_negozio = indirizzo_negozio;
         this.partita_iva_negozio = partita_iva_negozio;
-        this.cataloghi = new ArrayList<>();
         this.recordStatusEnum = recordStatusEnum;
     }
 
@@ -87,19 +86,4 @@ public class Negozio {
         this.partita_iva_negozio = partita_iva_negozio;
     }
 
-    public List<Catalogo> getLista_di_cataloghi() {
-        return cataloghi;
-    }
-
-    public void setLista_di_cataloghi(List<Catalogo> lista_di_cataloghi) {
-        this.cataloghi = lista_di_cataloghi;
-    }
-
-    public List<Catalogo> getCataloghi() {
-        return cataloghi;
-    }
-
-    public void setCataloghi(List<Catalogo> cataloghi) {
-        this.cataloghi = cataloghi;
-    }
 }
