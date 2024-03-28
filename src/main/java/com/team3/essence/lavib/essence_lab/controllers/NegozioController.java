@@ -73,4 +73,30 @@ public class NegozioController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    /**
+     *
+     * @return
+     */
+    @GetMapping ("/active")
+    public ResponseEntity<List<Negozio>> findByActive (){
+        Optional<List<Negozio>> listNegozi = negozioService.getByRecordStatusActive();
+        if (listNegozi.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(listNegozi.get());
+    }
+
+    /**
+     *
+     * @return
+     */
+    @GetMapping ("/inactive")
+    public ResponseEntity<List<Negozio>> findByInactive (){
+        Optional<List<Negozio>> listNegozi = negozioService.getByRecordStatusInactive();
+        if (listNegozi.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(listNegozi.get());
+    }
 }
