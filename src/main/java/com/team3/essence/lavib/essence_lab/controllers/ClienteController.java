@@ -83,4 +83,20 @@ public class ClienteController {
         }
         return ResponseEntity.ok().body(clienteOptional.get());
     }
+    @GetMapping("/active")
+    public ResponseEntity<List<Cliente>> findByActive(){
+        Optional<List<Cliente>> listClient = clienteService.getByRecordStatusActive();
+        if (listClient.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(listClient.get());
+    }
+    @GetMapping("/inactive")
+    public ResponseEntity<List<Cliente>> findByInactive(){
+        Optional<List<Cliente>> listClient = clienteService.getByRecordStatusInactive();
+        if (listClient.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(listClient.get());
+    }
 }
