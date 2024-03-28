@@ -1,6 +1,7 @@
 package com.team3.essence.lavib.essence_lab.services;
 
 
+import com.team3.essence.lavib.essence_lab.Enum.RecordStatusEnum;
 import com.team3.essence.lavib.essence_lab.entities.Cliente;
 
 import com.team3.essence.lavib.essence_lab.repositories.ClienteRepository;
@@ -81,5 +82,14 @@ public class ClienteService {
             return Optional.empty();
         }
         return clienteOptional;
+    }
+
+    public Optional<List<Cliente>> getByRecordStatusActive(){
+        Optional<List<Cliente>> listClient = Optional.ofNullable(clienteRepository.findByRecordStatus(RecordStatusEnum.A));
+        return listClient;
+    }
+    public Optional<List<Cliente>> getByRecordStatusInactive(){
+        Optional<List<Cliente>> listClient = Optional.ofNullable(clienteRepository.findByRecordStatus(RecordStatusEnum.I));
+        return listClient;
     }
 }
