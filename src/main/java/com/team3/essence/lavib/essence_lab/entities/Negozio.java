@@ -29,20 +29,14 @@ public class Negozio {
     private RecordStatusEnum recordStatusEnum =  RecordStatusEnum .A;
 
     public Negozio(){}
-    public Negozio(Long id, String nome_negozio, String luogo_negozio, String indirizzo_negozio, String partita_iva_negozio, RecordStatusEnum recordStatusEnum) {
+
+    public Negozio(Long id, String nome_negozio, String luogo_negozio, String indirizzo_negozio, String partita_iva_negozio, List<Profumo> profumi, RecordStatusEnum recordStatusEnum) {
         this.id = id;
         this.nome_negozio = nome_negozio;
         this.luogo_negozio = luogo_negozio;
         this.indirizzo_negozio = indirizzo_negozio;
         this.partita_iva_negozio = partita_iva_negozio;
-        this.recordStatusEnum = recordStatusEnum;
-    }
-
-    public RecordStatusEnum getRecordStatusEnum() {
-        return recordStatusEnum;
-    }
-
-    public void setRecordStatusEnum(RecordStatusEnum recordStatusEnum) {
+        this.profumi = profumi;
         this.recordStatusEnum = recordStatusEnum;
     }
 
@@ -86,4 +80,19 @@ public class Negozio {
         this.partita_iva_negozio = partita_iva_negozio;
     }
 
+    public List<Profumo> getProfumi() {
+        return profumi;
+    }
+
+    public void setProfumi(List<Profumo> profumi) {
+        this.profumi = profumi;
+    }
+
+    public RecordStatusEnum getRecordStatusEnum() {
+        return recordStatusEnum;
+    }
+
+    public void setRecordStatusEnum(RecordStatusEnum recordStatusEnum) {
+        this.recordStatusEnum = recordStatusEnum;
+    }
 }

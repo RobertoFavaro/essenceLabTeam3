@@ -28,9 +28,10 @@ public class Cliente {
     @Enumerated(EnumType.STRING)
     @NotNull
     @Column(name = "record_status", nullable = false, length = 1)
-    private RecordStatusEnum recordStatusEnum =  RecordStatusEnum .A;
+    private RecordStatusEnum recordStatusEnum = RecordStatusEnum.A;
 
-    public Cliente(){}
+    public Cliente() {}
+
     public Cliente(Long id, String nome_cliente, String cognome_cliente, String genere_cliente, String email_cliente, String codiceFiscale_cliente, Integer eta_cliente, String indirizzo_cliente, RecordStatusEnum recordStatusEnum) {
         this.id = id;
         this.nome_cliente = nome_cliente;
@@ -40,15 +41,6 @@ public class Cliente {
         this.codiceFiscale_cliente = codiceFiscale_cliente;
         this.eta_cliente = eta_cliente;
         this.indirizzo_cliente = indirizzo_cliente;
-        this.recordStatusEnum = recordStatusEnum;
-    }
-
-    @NonNull
-    public RecordStatusEnum getRecordStatusEnum() {
-        return recordStatusEnum;
-    }
-
-    public void setRecordStatusEnum(@NonNull RecordStatusEnum recordStatusEnum) {
         this.recordStatusEnum = recordStatusEnum;
     }
 
@@ -114,5 +106,13 @@ public class Cliente {
 
     public void setIndirizzo_cliente(String indirizzo_cliente) {
         this.indirizzo_cliente = indirizzo_cliente;
+    }
+
+    public RecordStatusEnum getRecordStatusEnum() {
+        return recordStatusEnum;
+    }
+
+    public void setRecordStatusEnum(RecordStatusEnum recordStatusEnum) {
+        this.recordStatusEnum = recordStatusEnum;
     }
 }

@@ -78,4 +78,20 @@ public class EssenzaController {
         }
         return ResponseEntity.notFound().build();
     }
+    @GetMapping("/active")
+    public ResponseEntity<List<Essenza>> findByActive(){
+        Optional<List<Essenza>> listaEssenza = essenzaService.getByRecordStatusActive();
+        if(listaEssenza.isPresent()){
+            return ResponseEntity.ok().body(listaEssenza.get());
+        }
+      return ResponseEntity.notFound().build();
+    }
+    @GetMapping("/inactive")
+    public ResponseEntity<List<Essenza>> findByInactive(){
+        Optional<List<Essenza>> listaEssenze = essenzaService.getByRecordStatusInactive();
+        if(listaEssenze.isPresent()){
+            return ResponseEntity.ok().body(listaEssenze.get());
+        }
+        return ResponseEntity.notFound().build();
+    }
 }
