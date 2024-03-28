@@ -27,44 +27,23 @@ public class Essenza {
     @Enumerated(EnumType.STRING)
     @NotNull
     @Column(name = "record_status", nullable = false, length = 1)
-    private RecordStatusEnum recordStatusEnum =  RecordStatusEnum .A;
+    private RecordStatusEnum recordStatusEnum = RecordStatusEnum.A;
     @Enumerated(EnumType.STRING)
     private EnumTipoEssenza enumTipoEssenza;
-    public Essenza(){}
 
-    public Essenza(Long id, String nome_essenza, String allergeni_essenza, Double prezzo_essenza, String ingredienti_essenza, Profumo profumo,String descrizione_essenza, RecordStatusEnum recordStatusEnum) {
+    public Essenza() {
+    }
+
+    public Essenza(Long id, String nome_essenza, String allergeni_essenza, String descrizione_essenza, Double prezzo_essenza, String ingredienti_essenza, Profumo profumo, RecordStatusEnum recordStatusEnum, EnumTipoEssenza enumTipoEssenza) {
         this.id = id;
         this.nome_essenza = nome_essenza;
         this.allergeni_essenza = allergeni_essenza;
+        this.descrizione_essenza = descrizione_essenza;
         this.prezzo_essenza = prezzo_essenza;
         this.ingredienti_essenza = ingredienti_essenza;
         this.profumo = profumo;
-        this.descrizione_essenza = descrizione_essenza;
         this.recordStatusEnum = recordStatusEnum;
-    }
-
-    public EnumTipoEssenza getEnumTipoEssenza() {
-        return enumTipoEssenza;
-    }
-
-    public void setEnumTipoEssenza(EnumTipoEssenza enumTipoEssenza) {
         this.enumTipoEssenza = enumTipoEssenza;
-    }
-
-    public RecordStatusEnum getRecordStatusEnum() {
-        return recordStatusEnum;
-    }
-
-    public void setRecordStatusEnum(RecordStatusEnum recordStatusEnum) {
-        this.recordStatusEnum = recordStatusEnum;
-    }
-
-    public String getDescrizione_essenza() {
-        return descrizione_essenza;
-    }
-
-    public void setDescrizione_essenza(String descrizione_essenza) {
-        this.descrizione_essenza = descrizione_essenza;
     }
 
     public Long getId() {
@@ -91,6 +70,14 @@ public class Essenza {
         this.allergeni_essenza = allergeni_essenza;
     }
 
+    public String getDescrizione_essenza() {
+        return descrizione_essenza;
+    }
+
+    public void setDescrizione_essenza(String descrizione_essenza) {
+        this.descrizione_essenza = descrizione_essenza;
+    }
+
     public Double getPrezzo_essenza() {
         return prezzo_essenza;
     }
@@ -113,5 +100,21 @@ public class Essenza {
 
     public void setProfumo(Profumo profumo) {
         this.profumo = profumo;
+    }
+
+    public RecordStatusEnum getRecordStatusEnum() {
+        return recordStatusEnum;
+    }
+
+    public void setRecordStatusEnum(RecordStatusEnum recordStatusEnum) {
+        this.recordStatusEnum = recordStatusEnum;
+    }
+
+    public EnumTipoEssenza getEnumTipoEssenza() {
+        return enumTipoEssenza;
+    }
+
+    public void setEnumTipoEssenza(EnumTipoEssenza enumTipoEssenza) {
+        this.enumTipoEssenza = enumTipoEssenza;
     }
 }

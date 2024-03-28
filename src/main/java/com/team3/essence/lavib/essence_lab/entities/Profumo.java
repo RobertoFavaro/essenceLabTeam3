@@ -44,17 +44,19 @@ public class Profumo {
 
     public Profumo(){}
 
-    public Profumo(Long id, String nome_profumo, String descrizione_profumo, String ingredienti_profumo, Double prezzo_profumo, String allergeni_profumo, RecordStatusEnum recordStatusEnum, EnumTipoProfumo enumTipoProfumo, EnumMarcaProfumo enumMarcaProfumo) {
+    public Profumo(Long id, String nome_profumo, String descrizione_profumo, String ingredienti_profumo, Double prezzo_profumo, String allergeni_profumo, List<Essenza> essenze, Negozio negozio, RecordStatusEnum recordStatusEnum, EnumTipoProfumo enumTipoProfumo, EnumMarcaProfumo enumMarcaProfumo, EnumCategoriaProfumo enumCategoriaProfumo) {
         this.id = id;
         this.nome_profumo = nome_profumo;
         this.descrizione_profumo = descrizione_profumo;
         this.ingredienti_profumo = ingredienti_profumo;
         this.prezzo_profumo = prezzo_profumo;
         this.allergeni_profumo = allergeni_profumo;
-        this.essenze = new ArrayList<>();
+        this.essenze = essenze;
+        this.negozio = negozio;
         this.recordStatusEnum = recordStatusEnum;
         this.enumTipoProfumo = enumTipoProfumo;
         this.enumMarcaProfumo = enumMarcaProfumo;
+        this.enumCategoriaProfumo = enumCategoriaProfumo;
     }
 
     public Long getId() {
@@ -113,6 +115,14 @@ public class Profumo {
         this.essenze = essenze;
     }
 
+    public Negozio getNegozio() {
+        return negozio;
+    }
+
+    public void setNegozio(Negozio negozio) {
+        this.negozio = negozio;
+    }
+
     public RecordStatusEnum getRecordStatusEnum() {
         return recordStatusEnum;
     }
@@ -135,5 +145,13 @@ public class Profumo {
 
     public void setEnumMarcaProfumo(EnumMarcaProfumo enumMarcaProfumo) {
         this.enumMarcaProfumo = enumMarcaProfumo;
+    }
+
+    public EnumCategoriaProfumo getEnumCategoriaProfumo() {
+        return enumCategoriaProfumo;
+    }
+
+    public void setEnumCategoriaProfumo(EnumCategoriaProfumo enumCategoriaProfumo) {
+        this.enumCategoriaProfumo = enumCategoriaProfumo;
     }
 }

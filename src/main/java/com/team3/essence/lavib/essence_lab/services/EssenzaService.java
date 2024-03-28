@@ -1,5 +1,6 @@
 package com.team3.essence.lavib.essence_lab.services;
 
+import com.team3.essence.lavib.essence_lab.Enum.RecordStatusEnum;
 import com.team3.essence.lavib.essence_lab.entities.Essenza;
 import com.team3.essence.lavib.essence_lab.repositories.EssenzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +74,14 @@ public class EssenzaService {
             return Optional.empty();
         }
         return deleteEssenza;
+    }
+    public Optional<List<Essenza>> getByRecordStatusActive(){
+        Optional<List<Essenza>> listEssenze = Optional.ofNullable(essenzaRepository.findByRecordStatus(RecordStatusEnum.A));
+        return listEssenze;
+    }
+    public Optional<List<Essenza>> getByRecordStatusInactive(){
+        Optional<List<Essenza>> listEssenze = Optional.ofNullable(essenzaRepository.findByRecordStatus(RecordStatusEnum.I));
+        return listEssenze;
     }
 
 }
