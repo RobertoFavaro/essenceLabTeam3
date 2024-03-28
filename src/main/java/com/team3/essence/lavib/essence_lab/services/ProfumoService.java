@@ -51,7 +51,6 @@ public class ProfumoService {
             profumoUpdate.get().setIngredienti_profumo(profumoToUpdate.getIngredienti_profumo());
             profumoUpdate.get().setNome_profumo(profumoToUpdate.getNome_profumo());
             profumoUpdate.get().setPrezzo_profumo(profumoToUpdate.getPrezzo_profumo());
-            profumoUpdate.get().setCatalogo(profumoToUpdate.getCatalogo());
             profumoUpdate.get().setEnumMarcaProfumo(profumoToUpdate.getEnumMarcaProfumo());
             profumoUpdate.get().setEnumTipoProfumo(profumoToUpdate.getEnumTipoProfumo());
             profumoUpdate.get().setEssenze(profumoToUpdate.getEssenze());
