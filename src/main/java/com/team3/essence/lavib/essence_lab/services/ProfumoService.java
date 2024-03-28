@@ -1,7 +1,6 @@
 package com.team3.essence.lavib.essence_lab.services;
 
 import com.team3.essence.lavib.essence_lab.Enum.RecordStatusEnum;
-import com.team3.essence.lavib.essence_lab.entities.Essenza;
 import com.team3.essence.lavib.essence_lab.entities.Profumo;
 import com.team3.essence.lavib.essence_lab.repositories.ProfumoRepository;
 import org.springframework.beans.factory.annotation.Autowired;

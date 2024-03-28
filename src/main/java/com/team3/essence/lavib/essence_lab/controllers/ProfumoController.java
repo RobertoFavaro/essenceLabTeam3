@@ -1,6 +1,5 @@
 package com.team3.essence.lavib.essence_lab.controllers;
 
-import com.team3.essence.lavib.essence_lab.entities.Negozio;
 import com.team3.essence.lavib.essence_lab.entities.Profumo;
 import com.team3.essence.lavib.essence_lab.services.ProfumoService;
 import org.springframework.beans.factory.annotation.Autowired;
