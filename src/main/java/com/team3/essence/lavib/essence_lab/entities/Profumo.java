@@ -40,7 +40,9 @@ public class Profumo {
     private EnumMarcaProfumo enumMarcaProfumo;
     @Enumerated(EnumType.STRING)
     private EnumCategoriaProfumo enumCategoriaProfumo;
-
+    @ManyToOne
+    @JoinColumn(name = "carrello_id")
+    private Carrello carrello;
     public Profumo(){}
 
     public Profumo(Long id, String nome_profumo, String descrizione_profumo, String ingredienti_profumo, Double prezzo_profumo, String allergeni_profumo, List<Essenza> essenze, Negozio negozio, RecordStatusEnum recordStatusEnum, EnumTipoProfumo enumTipoProfumo, EnumMarcaProfumo enumMarcaProfumo, EnumCategoriaProfumo enumCategoriaProfumo) {

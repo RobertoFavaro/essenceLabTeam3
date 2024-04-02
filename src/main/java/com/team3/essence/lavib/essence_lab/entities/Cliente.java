@@ -29,6 +29,9 @@ public class Cliente {
     @NotNull
     @Column(name = "record_status", nullable = false, length = 1)
     private RecordStatusEnum recordStatusEnum = RecordStatusEnum.A;
+    @ManyToOne
+    @JoinColumn(name = "carrello_id")
+    private Carrello carrello;
 
     public Cliente() {}
 

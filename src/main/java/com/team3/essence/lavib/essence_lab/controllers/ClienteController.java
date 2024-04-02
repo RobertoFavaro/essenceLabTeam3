@@ -23,7 +23,7 @@ public class ClienteController {
      * @return cliente aggiunto.
      */
     @PostMapping("/addCliente")
-    public ResponseEntity<Cliente> postEvento(@RequestBody Cliente clienteToAdd) {
+    public ResponseEntity<Cliente> postCliente(@RequestBody Cliente clienteToAdd) {
         Cliente clienteAdded = clienteService.addCliente(clienteToAdd);
         return ResponseEntity.ok().body(clienteAdded);
     }
