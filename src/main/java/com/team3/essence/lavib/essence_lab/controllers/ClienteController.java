@@ -30,10 +30,10 @@ public class ClienteController {
 
     /**
      *
-     * @return  mostra la lista completa dei cliente.
+     * @return  mostra la lista completa dei clienti attivi.
      */
     @GetMapping("/viewAll")
-    public ResponseEntity<List<Cliente>> getClientes() {
+    public ResponseEntity<List<Cliente>> getAllClienti() {
         List<Cliente> clienteView = clienteService.getAllCliente();
         return ResponseEntity.ok().body(clienteView);
     }
@@ -72,8 +72,8 @@ public class ClienteController {
 
     /**
      *
-     * @param id con l'id cerca i Clienti
-     * @return mostra i Clienti elminati se ci sono altrimenti mostra "not found"
+     * @param id con l'id cerca i clienti
+     * @return mostra il cliente e lo disattiva se c'è altrimenti mostra "not found"
      */
     @DeleteMapping("/deactive/{id}")
     public ResponseEntity<Cliente> deleteClienteById(@PathVariable Long id) {
@@ -83,6 +83,11 @@ public class ClienteController {
         }
         return ResponseEntity.ok().body(clienteOptional.get());
     }
+
+    /**
+     *
+     * @return tutti i clienti inattivi
+     */
     @GetMapping("/viewInactive")
     public ResponseEntity<List<Cliente>> findByInactive(){
         Optional<List<Cliente>> listClient = clienteService.getByRecordStatusInactive();
@@ -91,6 +96,12 @@ public class ClienteController {
         }
         return ResponseEntity.ok().body(listClient.get());
     }
+
+    /**
+     *
+     * @param id con l'id cerca i clienti
+     * @return mostra il cliente e lo attiva se c'è altrimenti mostra "not found"
+     */
     @DeleteMapping("/active/{id}")
     public ResponseEntity<Cliente> activeClienteById(@PathVariable Long id) {
         Optional<Cliente> clienteOptional = clienteService.activeClienteById(id);

@@ -6,15 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-import static com.team3.essence.lavib.essence_lab.Enum.RecordStatusEnum.A;
-
-//TODO in ogni classe va fatta la lettura di solo record con recordstatus ad A (custom query)
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     List<Cliente> findByName(String name);

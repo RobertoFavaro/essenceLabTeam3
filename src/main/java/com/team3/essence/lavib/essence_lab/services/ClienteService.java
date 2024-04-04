@@ -66,6 +66,12 @@ public class ClienteService {
             return Optional.empty();
         }
     }
+
+    /**
+     *
+     * @param id
+     * @return il recordStatusEnum diventa inattivo
+     */
     public Optional<Cliente> deactiveClienteById(Long id) {
         Optional<Cliente> clienteOptional = clienteRepository.findById(id);
         if (clienteOptional.isPresent()) {
@@ -75,6 +81,11 @@ public class ClienteService {
         }
         return clienteOptional;
     }
+    /**
+     *
+     * @param id
+     * @return il recordStatusEnum diventa attivo
+     */
     public Optional<Cliente> activeClienteById(Long id) {
         Optional<Cliente> clienteOptional = clienteRepository.findById(id);
         if (clienteOptional.isPresent()) {
@@ -85,10 +96,15 @@ public class ClienteService {
         return clienteOptional;
     }
 
+    /**
+     *
+     * @return tutti i clienti inattivi
+     */
     public Optional<List<Cliente>> getByRecordStatusInactive(){
         Optional<List<Cliente>> listClient = Optional.ofNullable(clienteRepository.findByRecordStatus(RecordStatusEnum.I));
         return listClient;
     }
+
     /*
     /**
      *
