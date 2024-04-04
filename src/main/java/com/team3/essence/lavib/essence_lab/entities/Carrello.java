@@ -15,15 +15,13 @@ public class Carrello {
 
     @OneToMany(mappedBy = "cliente")
     private List<Cliente> cliente;
+    public Carrello(){}
 
     public Carrello(Long id, Double prezzoTotale, List<Profumo> profumi, List<Cliente> cliente) {
         this.id = id;
         this.prezzoTotale = prezzoTotale;
         this.profumi = profumi;
         this.cliente = cliente;
-    }
-    public Carrello(){
-
     }
 
     public Long getId() {

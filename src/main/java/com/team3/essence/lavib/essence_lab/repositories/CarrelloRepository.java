@@ -10,6 +10,5 @@ import java.util.List;
 
 @Repository
 public interface CarrelloRepository extends JpaRepository<Carrello,Long> {
-
     List<Carrello> findByRecordStatus(RecordStatusEnum recordStatusEnum);
 }

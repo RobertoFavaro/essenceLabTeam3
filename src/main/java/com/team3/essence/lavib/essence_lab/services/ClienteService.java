@@ -29,9 +29,8 @@ public class ClienteService {
      *
      * @return mostra la lista di tutti i cliente;
      */
-
-    public List<Cliente> getCliente() {
-        return clienteRepository.findAll();
+    public List<Cliente> getAllCliente(){
+       return clienteRepository.findAllActiveCliente();
     }
 
     /**
@@ -67,13 +66,36 @@ public class ClienteService {
             return Optional.empty();
         }
     }
+    public Optional<Cliente> deactiveClienteById(Long id) {
+        Optional<Cliente> clienteOptional = clienteRepository.findById(id);
+        if (clienteOptional.isPresent()) {
+            clienteOptional.get().setRecordStatusEnum(RecordStatusEnum.I);
+        } else {
+            return Optional.empty();
+        }
+        return clienteOptional;
+    }
+    public Optional<Cliente> activeClienteById(Long id) {
+        Optional<Cliente> clienteOptional = clienteRepository.findById(id);
+        if (clienteOptional.isPresent()) {
+            clienteOptional.get().setRecordStatusEnum(RecordStatusEnum.A);
+        } else {
+            return Optional.empty();
+        }
+        return clienteOptional;
+    }
 
+    public Optional<List<Cliente>> getByRecordStatusInactive(){
+        Optional<List<Cliente>> listClient = Optional.ofNullable(clienteRepository.findByRecordStatus(RecordStatusEnum.I));
+        return listClient;
+    }
+    /*
     /**
      *
      * @param id per cercare il cliente da eliminare
      * @return mostra il cliente eliminata o un oggetto vuoto se non esiste
      */
-
+/*
     public Optional<Cliente> deleteClienteById(Long id) {
         Optional<Cliente> clienteOptional = clienteRepository.findById(id);
         if (clienteOptional.isPresent()) {
@@ -82,14 +104,5 @@ public class ClienteService {
             return Optional.empty();
         }
         return clienteOptional;
-    }
-
-    public Optional<List<Cliente>> getByRecordStatusActive(){
-        Optional<List<Cliente>> listClient = Optional.ofNullable(clienteRepository.findByRecordStatus(RecordStatusEnum.A));
-        return listClient;
-    }
-    public Optional<List<Cliente>> getByRecordStatusInactive(){
-        Optional<List<Cliente>> listClient = Optional.ofNullable(clienteRepository.findByRecordStatus(RecordStatusEnum.I));
-        return listClient;
-    }
+    }*/
 }

@@ -45,7 +45,7 @@ public class Profumo {
     private Carrello carrello;
     public Profumo(){}
 
-    public Profumo(Long id, String nome_profumo, String descrizione_profumo, String ingredienti_profumo, Double prezzo_profumo, String allergeni_profumo, List<Essenza> essenze, Negozio negozio, RecordStatusEnum recordStatusEnum, EnumTipoProfumo enumTipoProfumo, EnumMarcaProfumo enumMarcaProfumo, EnumCategoriaProfumo enumCategoriaProfumo) {
+    public Profumo(Long id, String nome_profumo, String descrizione_profumo, String ingredienti_profumo, Double prezzo_profumo, String allergeni_profumo, List<Essenza> essenze, Negozio negozio, RecordStatusEnum recordStatusEnum, EnumTipoProfumo enumTipoProfumo, EnumMarcaProfumo enumMarcaProfumo, EnumCategoriaProfumo enumCategoriaProfumo, Carrello carrello) {
         this.id = id;
         this.nome_profumo = nome_profumo;
         this.descrizione_profumo = descrizione_profumo;
@@ -58,6 +58,15 @@ public class Profumo {
         this.enumTipoProfumo = enumTipoProfumo;
         this.enumMarcaProfumo = enumMarcaProfumo;
         this.enumCategoriaProfumo = enumCategoriaProfumo;
+        this.carrello = carrello;
+    }
+
+    public Carrello getCarrello() {
+        return carrello;
+    }
+
+    public void setCarrello(Carrello carrello) {
+        this.carrello = carrello;
     }
 
     public Long getId() {

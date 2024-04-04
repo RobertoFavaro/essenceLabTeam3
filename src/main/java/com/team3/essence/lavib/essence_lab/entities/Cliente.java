@@ -35,7 +35,7 @@ public class Cliente {
 
     public Cliente() {}
 
-    public Cliente(Long id, String nome_cliente, String cognome_cliente, String genere_cliente, String email_cliente, String codiceFiscale_cliente, Integer eta_cliente, String indirizzo_cliente, RecordStatusEnum recordStatusEnum) {
+    public Cliente(Long id, String nome_cliente, String cognome_cliente, String genere_cliente, String email_cliente, String codiceFiscale_cliente, Integer eta_cliente, String indirizzo_cliente, RecordStatusEnum recordStatusEnum, Carrello carrello) {
         this.id = id;
         this.nome_cliente = nome_cliente;
         this.cognome_cliente = cognome_cliente;
@@ -45,6 +45,15 @@ public class Cliente {
         this.eta_cliente = eta_cliente;
         this.indirizzo_cliente = indirizzo_cliente;
         this.recordStatusEnum = recordStatusEnum;
+        this.carrello = carrello;
+    }
+
+    public Carrello getCarrello() {
+        return carrello;
+    }
+
+    public void setCarrello(Carrello carrello) {
+        this.carrello = carrello;
     }
 
     public Long getId() {

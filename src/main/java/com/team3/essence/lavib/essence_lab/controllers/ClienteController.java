@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/Cliente")
+@RequestMapping("/cliente")
 public class ClienteController {
     @Autowired
     private ClienteService clienteService;
@@ -22,7 +22,7 @@ public class ClienteController {
      * @param clienteToAdd
      * @return cliente aggiunto.
      */
-    @PostMapping("/addCliente")
+    @PostMapping("/add")
     public ResponseEntity<Cliente> postCliente(@RequestBody Cliente clienteToAdd) {
         Cliente clienteAdded = clienteService.addCliente(clienteToAdd);
         return ResponseEntity.ok().body(clienteAdded);
@@ -32,9 +32,9 @@ public class ClienteController {
      *
      * @return  mostra la lista completa dei cliente.
      */
-    @GetMapping("/getAllclientes")
+    @GetMapping("/viewAll")
     public ResponseEntity<List<Cliente>> getClientes() {
-        List<Cliente> clienteView = clienteService.getCliente();
+        List<Cliente> clienteView = clienteService.getAllCliente();
         return ResponseEntity.ok().body(clienteView);
     }
 
@@ -44,7 +44,7 @@ public class ClienteController {
      * @return mostra il cliente trovato o se non esiste mostra "not found".
      */
 
-    @GetMapping("/getSingleCliente/{id}")
+    @GetMapping("/viewSingle/{id}")
     public ResponseEntity<Cliente> getCliente(@PathVariable Long id) {
         Optional<Cliente> clienteOptional = clienteService.getCliente(id);
         if (clienteOptional.isEmpty()) {
@@ -59,7 +59,7 @@ public class ClienteController {
      * @param cliente
      * @return mostra i clienti aggiornati se ci sono altrimenti mostra "not found"
      */
-    @PutMapping("/updateCliente/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Cliente> updateCliente(
             @PathVariable Long id,
             @RequestBody Cliente cliente) {
@@ -75,28 +75,28 @@ public class ClienteController {
      * @param id con l'id cerca i Clienti
      * @return mostra i Clienti elminati se ci sono altrimenti mostra "not found"
      */
-    @DeleteMapping("/deleteCliente/{id}")
+    @DeleteMapping("/deactive/{id}")
     public ResponseEntity<Cliente> deleteClienteById(@PathVariable Long id) {
-        Optional<Cliente> clienteOptional = clienteService.deleteClienteById(id);
+        Optional<Cliente> clienteOptional = clienteService.deactiveClienteById(id);
         if (clienteOptional.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().body(clienteOptional.get());
     }
-    @GetMapping("/active")
-    public ResponseEntity<List<Cliente>> findByActive(){
-        Optional<List<Cliente>> listClient = clienteService.getByRecordStatusActive();
-        if (listClient.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok().body(listClient.get());
-    }
-    @GetMapping("/inactive")
+    @GetMapping("/viewInactive")
     public ResponseEntity<List<Cliente>> findByInactive(){
         Optional<List<Cliente>> listClient = clienteService.getByRecordStatusInactive();
         if (listClient.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().body(listClient.get());
+    }
+    @DeleteMapping("/active/{id}")
+    public ResponseEntity<Cliente> activeClienteById(@PathVariable Long id) {
+        Optional<Cliente> clienteOptional = clienteService.activeClienteById(id);
+        if (clienteOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(clienteOptional.get());
     }
 }
