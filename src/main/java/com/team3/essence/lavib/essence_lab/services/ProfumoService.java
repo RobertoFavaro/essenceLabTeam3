@@ -1,6 +1,7 @@
 package com.team3.essence.lavib.essence_lab.services;
 
 import com.team3.essence.lavib.essence_lab.Enum.RecordStatusEnum;
+import com.team3.essence.lavib.essence_lab.entities.Cliente;
 import com.team3.essence.lavib.essence_lab.entities.Profumo;
 import com.team3.essence.lavib.essence_lab.repositories.ProfumoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class ProfumoService {
      * @return Ritorna la lista dei profumi;
      */
     public List<Profumo> getAllProfumi() {
-        return profumoRepository.findAll();
+        return profumoRepository.findAllActiveProfumi();
     }
 
     /**
@@ -38,9 +39,9 @@ public class ProfumoService {
     }
 
     /**
-     * @param id              per cercare l'essenza da aggiornare
+     * @param id              per cercare il profumo da aggiornare
      * @param profumoToUpdate
-     * @return L'essenza aggiornata o un oggetto vuoto se non è presente
+     * @return Profumo aggiornata o un oggetto vuoto se non è presente
      */
     public Optional<Profumo> updateProfumoId(Long id, Profumo profumoToUpdate) {
         Optional<Profumo> profumoUpdate = profumoRepository.findById(id);
@@ -64,18 +65,46 @@ public class ProfumoService {
      * @param id per cercare il profumo da eliminare
      * @return il profumo eliminato o un oggetto vuoto se non esiste
      */
-    public Optional<Profumo> deleteProfumo(Long id) {
-        Optional<Profumo> deleteProfumo = profumoRepository.findById(id);
-        if (deleteProfumo.isPresent()) {
-            profumoRepository.delete(deleteProfumo.get());
+//    public Optional<Profumo> deleteProfumo(Long id) {
+//        Optional<Profumo> deleteProfumo = profumoRepository.findById(id);
+//        if (deleteProfumo.isPresent()) {
+//            profumoRepository.delete(deleteProfumo.get());
+//        } else {
+//            return Optional.empty();
+//        }
+//        return deleteProfumo;
+//    }
+
+    /**
+     * @param id
+     * @return il recordStatusEnum diventa inattivo
+     */
+    public Optional<Profumo> deactiveProfumoById(Long id) {
+        Optional<Profumo> profumoOptional = profumoRepository.findById(id);
+        if (profumoOptional.isPresent()) {
+            profumoOptional.get().setRecordStatusEnum(RecordStatusEnum.I);
         } else {
             return Optional.empty();
         }
-        return deleteProfumo;
+        return profumoOptional;
     }
 
     /**
-     *
+     * @param id
+     * @return il recordStatusEnum diventa attivo
+     */
+
+    public Optional<Profumo> activeProfumopById(Long id) {
+        Optional<Profumo> profumoOptional = profumoRepository.findById(id);
+        if (profumoOptional.isPresent()) {
+            profumoOptional.get().setRecordStatusEnum(RecordStatusEnum.A);
+        } else {
+            return Optional.empty();
+        }
+        return profumoOptional;
+    }
+
+    /**
      * @return lista profumi con recordstatus attivo
      */
     public Optional<List<Profumo>> getByRecordStatusActive() {
@@ -84,11 +113,10 @@ public class ProfumoService {
     }
 
     /**
-     *
-     * @return lista profumi con recordstatus inattivo
+     * @return tutti i profumi inattivi
      */
     public Optional<List<Profumo>> getByRecordStatusInactive() {
-        Optional<List<Profumo>> listaProfumi = Optional.ofNullable(profumoRepository.findByRecordStatus(RecordStatusEnum.I));
-        return listaProfumi;
+        Optional<List<Profumo>> listProfumi = Optional.ofNullable(profumoRepository.findByRecordStatus(RecordStatusEnum.I));
+        return listProfumi;
     }
 }

@@ -65,11 +65,11 @@ public class ProfumoController {
      * @param id con l'id cerca i profumi
      * @return mostra i profumi elminati se ci sono altrimenti mostra "not found"
      */
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Profumo> deleteProfumo(@PathVariable Long id) {
-        Optional<Profumo> deleteProfumo = profumoService.deleteProfumo(id);
-        if (deleteProfumo.isPresent()) {
-            return ResponseEntity.ok().body(deleteProfumo.get());
+    @DeleteMapping("/deactive/{id}")
+    public ResponseEntity<Profumo> deactiveProfumo(@PathVariable Long id) {
+        Optional<Profumo> deactiveProfumo = profumoService.deactiveProfumoById(id);
+        if (deactiveProfumo.isPresent()) {
+            return ResponseEntity.ok().body(deactiveProfumo.get());
         }
         return ResponseEntity.notFound().build();
     }
