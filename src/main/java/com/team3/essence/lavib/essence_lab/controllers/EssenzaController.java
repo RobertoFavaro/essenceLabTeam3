@@ -1,5 +1,6 @@
 package com.team3.essence.lavib.essence_lab.controllers;
 
+import com.team3.essence.lavib.essence_lab.entities.Cliente;
 import com.team3.essence.lavib.essence_lab.entities.Essenza;
 import com.team3.essence.lavib.essence_lab.services.EssenzaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,7 @@ public class EssenzaController {
      * @param id per cercare l'essenza
      * @return L'essenza trovata o un not found se non esiste
      */
-    @GetMapping("/getEssenzaId/{id}")
+    @GetMapping("/viewSingle/{id}")
     public ResponseEntity<Essenza> getEssenzaId(@PathVariable Long id){
         Optional<Essenza> essenzaOptional = essenzaService.getEssenzaId(id);
         if(essenzaOptional.isPresent()){
@@ -56,7 +57,7 @@ public class EssenzaController {
      * @param essenza
      * @return l'essenza aggiornata se è esistente altrimenti ritorna un not found;
      */
-    @PutMapping("/updateEssenzaId/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Essenza> updateEssenza(@PathVariable Long id,@RequestBody Essenza essenza){
         Optional<Essenza> essenzaUpdate = essenzaService.updateEssenzaId(id,essenza);
         if(essenzaUpdate.isPresent()){
@@ -67,31 +68,42 @@ public class EssenzaController {
 
     /**
      *
-     * @param id per cercare l'essenza
-     * @return L'essenza eliminata altrimenti se non presente ritorno un not found
+     * @param id con l'id cerca le essenze
+     * @return mostra l'essenza e lo disattiva se c'è altrimenti mostra "not found"
      */
-    @DeleteMapping("/deleteEssenza/{id}")
-    public ResponseEntity<Essenza> deleteEssenza(@PathVariable Long id){
-        Optional<Essenza> deleteEssenza = essenzaService.deleteEssenza(id);
-        if(deleteEssenza.isPresent()){
-            return ResponseEntity.ok().body(deleteEssenza.get());
+    @DeleteMapping("/deactive/{id}")
+    public ResponseEntity<Essenza> deleteClienteById(@PathVariable Long id) {
+        Optional<Essenza> essenzaOptional = essenzaService.deactiveEssenzaById(id);
+        if (essenzaOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.ok().body(essenzaOptional.get());
     }
-    @GetMapping("/active")
-    public ResponseEntity<List<Essenza>> findByActive(){
-        Optional<List<Essenza>> listaEssenza = essenzaService.getByRecordStatusActive();
-        if(listaEssenza.isPresent()){
-            return ResponseEntity.ok().body(listaEssenza.get());
-        }
-      return ResponseEntity.notFound().build();
-    }
-    @GetMapping("/inactive")
+
+    /**
+     *
+     * @return tutte le essenze inattive
+     */
+    @GetMapping("/viewInactive")
     public ResponseEntity<List<Essenza>> findByInactive(){
-        Optional<List<Essenza>> listaEssenze = essenzaService.getByRecordStatusInactive();
-        if(listaEssenze.isPresent()){
-            return ResponseEntity.ok().body(listaEssenze.get());
+        Optional<List<Essenza>> listEssenze = essenzaService.getByRecordStatusInactive();
+        if (listEssenze.isEmpty()) {
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.ok().body(listEssenze.get());
+    }
+
+    /**
+     *
+     * @param id con l'id cerca le essenze
+     * @return mostra l' essenza e la attiva se c'è altrimenti mostra "not found"
+     */
+    @DeleteMapping("/active/{id}")
+    public ResponseEntity<Essenza> activeEssenzaById(@PathVariable Long id) {
+        Optional<Essenza> essenzaOptional = essenzaService.activeEssenzaById(id);
+        if (essenzaOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(essenzaOptional.get());
     }
 }

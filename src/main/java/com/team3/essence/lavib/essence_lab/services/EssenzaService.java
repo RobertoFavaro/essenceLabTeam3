@@ -1,6 +1,7 @@
 package com.team3.essence.lavib.essence_lab.services;
 
 import com.team3.essence.lavib.essence_lab.Enum.RecordStatusEnum;
+import com.team3.essence.lavib.essence_lab.entities.Cliente;
 import com.team3.essence.lavib.essence_lab.entities.Essenza;
 import com.team3.essence.lavib.essence_lab.repositories.EssenzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,25 +61,40 @@ public class EssenzaService {
             return Optional.empty();
         }
     }
+    /**
+     *
+     * @param id
+     * @return il recordStatusEnum diventa inattivo
+     */
+    public Optional<Essenza> deactiveEssenzaById(Long id) {
+        Optional<Essenza> essenzaOptional = essenzaRepository.findById(id);
+        if (essenzaOptional.isPresent()) {
+            essenzaOptional.get().setRecordStatusEnum(RecordStatusEnum.I);
+        } else {
+            return Optional.empty();
+        }
+        return essenzaOptional;
+    }
 
     /**
      *
-     * @param id per cercare l'essenza da eliminare
-     * @return L'essenza eliminata o un oggetto vuoto se non esiste
+     * @param id
+     * @return il recordStatusEnum diventa attivo
      */
-    public Optional<Essenza> deleteEssenza(Long id){
-        Optional<Essenza> deleteEssenza = essenzaRepository.findById(id);
-        if(deleteEssenza.isPresent()){
-            essenzaRepository.delete(deleteEssenza.get());
-        }else{
+    public Optional<Essenza> activeEssenzaById(Long id) {
+        Optional<Essenza> essenzaOptional = essenzaRepository.findById(id);
+        if (essenzaOptional.isPresent()) {
+            essenzaOptional.get().setRecordStatusEnum(RecordStatusEnum.A);
+        } else {
             return Optional.empty();
         }
-        return deleteEssenza;
+        return essenzaOptional;
     }
-    public Optional<List<Essenza>> getByRecordStatusActive(){
-        Optional<List<Essenza>> listEssenze = Optional.ofNullable(essenzaRepository.findByRecordStatus(RecordStatusEnum.A));
-        return listEssenze;
-    }
+
+    /**
+     *
+     * @return tutte le essenze inattive
+     */
     public Optional<List<Essenza>> getByRecordStatusInactive(){
         Optional<List<Essenza>> listEssenze = Optional.ofNullable(essenzaRepository.findByRecordStatus(RecordStatusEnum.I));
         return listEssenze;
