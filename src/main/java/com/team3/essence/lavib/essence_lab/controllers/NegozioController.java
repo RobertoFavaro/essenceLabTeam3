@@ -65,7 +65,7 @@ public class NegozioController {
      * @param id con l'id cerca i clienti
      * @return mostra il cliente e lo disattiva se c'è altrimenti mostra "not found"
      */
-    @DeleteMapping ("/deactive/{id}")
+    @PutMapping ("/deactive/{id}")
     public ResponseEntity<Negozio> deleteNegozio (@PathVariable Long id){
         Optional <Negozio> deleteNegozio = negozioService.deactivateNegozioById(id);
         if (deleteNegozio.isPresent()){
@@ -73,24 +73,11 @@ public class NegozioController {
         }
         return ResponseEntity.notFound().build();
     }
-
-    /**
-     *
-     * @param id con l'id cerca i clienti
-     * @return mostra il cliente e lo attiva se c'è altrimenti mostra "not found"
-     */
-    @GetMapping ("/active{id}")
-    public ResponseEntity<Negozio> activeNegozioById (@PathVariable Long id){
-        Optional<Negozio> listNegozi = negozioService.activeNegozioById(id);
-        if (listNegozi.isEmpty()){
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok().body(listNegozi.get());
-    }
     /**
      *
      * @return tutti i clienti inattivi
      */
+
     @GetMapping ("/viewInactive")
     public ResponseEntity<List<Negozio>> findByInactive (){
         Optional<List<Negozio>> listNegozi = negozioService.getByRecordStatusInactive();
@@ -99,4 +86,18 @@ public class NegozioController {
         }
         return ResponseEntity.ok().body(listNegozi.get());
     }
+
+    //    /**
+    //     *
+    //     * @param id con l'id cerca i clienti
+    //     * @return mostra il cliente e lo attiva se c'è altrimenti mostra "not found"
+    //     */
+//    @GetMapping ("/active{id}")
+//    public ResponseEntity<Negozio> activeNegozioById (@PathVariable Long id){
+//        Optional<Negozio> listNegozi = negozioService.activeNegozioById(id);
+//        if (listNegozi.isEmpty()){
+//            return ResponseEntity.notFound().build();
+//        }
+//        return ResponseEntity.ok().body(listNegozi.get());
+//    }
 }

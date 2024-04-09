@@ -65,6 +65,7 @@ public class CarrelloService {
         Optional<Carrello> carrelloOptional = carrelloRepository.findById(id);
         if (carrelloOptional.isPresent()) {
             carrelloOptional.get().setRecordStatusEnum(RecordStatusEnum.I);
+            carrelloRepository.save(carrelloOptional.get());
         } else {
             return Optional.empty();
         }

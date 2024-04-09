@@ -75,7 +75,7 @@ public class ClienteController {
      * @param id con l'id cerca i clienti
      * @return mostra il cliente e lo disattiva se c'è altrimenti mostra "not found"
      */
-    @DeleteMapping("/deactive/{id}")
+    @PutMapping("/deactive/{id}")
     public ResponseEntity<Cliente> deleteClienteById(@PathVariable Long id) {
         Optional<Cliente> clienteOptional = clienteService.deactiveClienteById(id);
         if (clienteOptional.isEmpty()) {
@@ -97,17 +97,17 @@ public class ClienteController {
         return ResponseEntity.ok().body(listClient.get());
     }
 
-    /**
-     *
-     * @param id con l'id cerca i clienti
-     * @return mostra il cliente e lo attiva se c'è altrimenti mostra "not found"
-     */
-    @DeleteMapping("/active/{id}")
-    public ResponseEntity<Cliente> activeClienteById(@PathVariable Long id) {
-        Optional<Cliente> clienteOptional = clienteService.activeClienteById(id);
-        if (clienteOptional.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok().body(clienteOptional.get());
-    }
+//    /**
+//     *
+//     * @param id con l'id cerca i clienti
+//     * @return mostra il cliente e lo attiva se c'è altrimenti mostra "not found"
+//     */
+//    @DeleteMapping("/active/{id}")
+//    public ResponseEntity<Cliente> activeClienteById(@PathVariable Long id) {
+//        Optional<Cliente> clienteOptional = clienteService.activeClienteById(id);
+//        if (clienteOptional.isEmpty()) {
+//            return ResponseEntity.notFound().build();
+//        }
+//        return ResponseEntity.ok().body(clienteOptional.get());
+//    }
 }

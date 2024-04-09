@@ -70,7 +70,7 @@ public class EssenzaController {
      * @param id con l'id cerca le essenze
      * @return mostra l'essenza e lo disattiva se c'è altrimenti mostra "not found"
      */
-    @DeleteMapping("/deactive/{id}")
+    @PutMapping("/deactive/{id}")
     public ResponseEntity<Essenza> deleteClienteById(@PathVariable Long id) {
         Optional<Essenza> essenzaOptional = essenzaService.deactiveEssenzaById(id);
         if (essenzaOptional.isEmpty()) {
@@ -92,17 +92,17 @@ public class EssenzaController {
         return ResponseEntity.ok().body(listEssenze.get());
     }
 
-    /**
-     *
-     * @param id con l'id cerca le essenze
-     * @return mostra l' essenza e la attiva se c'è altrimenti mostra "not found"
-     */
-    @DeleteMapping("/active/{id}")
-    public ResponseEntity<Essenza> activeEssenzaById(@PathVariable Long id) {
-        Optional<Essenza> essenzaOptional = essenzaService.activeEssenzaById(id);
-        if (essenzaOptional.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok().body(essenzaOptional.get());
-    }
+//    /**
+//     *
+//     * @param id con l'id cerca le essenze
+//     * @return mostra l' essenza e la attiva se c'è altrimenti mostra "not found"
+//     */
+//    @DeleteMapping("/active/{id}")
+//    public ResponseEntity<Essenza> activeEssenzaById(@PathVariable Long id) {
+//        Optional<Essenza> essenzaOptional = essenzaService.activeEssenzaById(id);
+//        if (essenzaOptional.isEmpty()) {
+//            return ResponseEntity.notFound().build();
+//        }
+//        return ResponseEntity.ok().body(essenzaOptional.get());
+//    }
 }

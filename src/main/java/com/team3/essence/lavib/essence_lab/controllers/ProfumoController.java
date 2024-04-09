@@ -65,7 +65,7 @@ public class ProfumoController {
      * @param id con l'id cerca i profumi
      * @return mostra i profumi elminati se ci sono altrimenti mostra "not found"
      */
-    @DeleteMapping("/deactive/{id}")
+    @PutMapping("/deactive/{id}")
     public ResponseEntity<Profumo> deactiveProfumo(@PathVariable Long id) {
         Optional<Profumo> deactiveProfumo = profumoService.deactiveProfumoById(id);
         if (deactiveProfumo.isPresent()) {
@@ -74,17 +74,6 @@ public class ProfumoController {
         return ResponseEntity.notFound().build();
     }
 
-    /**
-     * @return lista profumi con record status attivo
-     */
-    @GetMapping("/active")
-    public ResponseEntity<List<Profumo>> findByActive() {
-        Optional<List<Profumo>> listaProfumi = profumoService.getByRecordStatusActive();
-        if (listaProfumi.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok().body(listaProfumi.get());
-    }
 
     /**
      * @return lista profumi con record status inattivo
@@ -97,4 +86,16 @@ public class ProfumoController {
         }
         return ResponseEntity.ok().body(listaProfumi.get());
     }
+
+//    /**
+//     * @return lista profumi con record status attivo
+//     */
+//    @GetMapping("/active")
+//    public ResponseEntity<List<Profumo>> findByActive() {
+//        Optional<List<Profumo>> listaProfumi = profumoService.getByRecordStatusActive();
+//        if (listaProfumi.isEmpty()) {
+//            return ResponseEntity.notFound().build();
+//        }
+//        return ResponseEntity.ok().body(listaProfumi.get());
+//    }
 }
