@@ -1,27 +1,34 @@
 package com.team3.essence.lavib.essence_lab.entities;
 
+import com.team3.essence.lavib.essence_lab.Enum.RecordStatusEnum;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
+
 
 @Entity
 public class Carrello {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private  Double prezzoTotale;
-    @OneToMany(mappedBy = "profumo")
+    private Double prezzoTotale;
+    @Enumerated(EnumType.STRING)
+    @NotNull
+    @Column(name = "record_status", nullable = false, length = 1)
+    private RecordStatusEnum recordStatusEnum = RecordStatusEnum.A;
+    @OneToMany(mappedBy = "carrello")
     private List<Profumo> profumi;
-
-    @OneToMany(mappedBy = "cliente")
-    private List<Cliente> cliente;
+    @OneToMany(mappedBy = "carrello")
+    private List<Cliente> clienti;
     public Carrello(){}
 
-    public Carrello(Long id, Double prezzoTotale, List<Profumo> profumi, List<Cliente> cliente) {
+    public Carrello(Long id, Double prezzoTotale, List<Profumo> profumi, List<Cliente> clienti, RecordStatusEnum recordStatusEnum) {
         this.id = id;
         this.prezzoTotale = prezzoTotale;
         this.profumi = profumi;
-        this.cliente = cliente;
+        this.clienti = clienti;
+        this.recordStatusEnum = recordStatusEnum;
     }
 
     public Long getId() {
@@ -48,11 +55,19 @@ public class Carrello {
         this.profumi = profumi;
     }
 
-    public List<Cliente> getCliente() {
-        return cliente;
+    public List<Cliente> getClienti() {
+        return clienti;
     }
 
-    public void setCliente(List<Cliente> cliente) {
-        this.cliente = cliente;
+    public void setClienti(List<Cliente> clienti) {
+        this.clienti = clienti;
+    }
+
+    public RecordStatusEnum getRecordStatusEnum() {
+        return recordStatusEnum;
+    }
+
+    public void setRecordStatusEnum(RecordStatusEnum recordStatusEnum) {
+        this.recordStatusEnum = recordStatusEnum;
     }
 }

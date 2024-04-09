@@ -5,7 +5,7 @@ import com.team3.essence.lavib.essence_lab.Enum.EnumMarcaProfumo;
 import com.team3.essence.lavib.essence_lab.Enum.EnumTipoProfumo;
 import com.team3.essence.lavib.essence_lab.Enum.RecordStatusEnum;
 import jakarta.persistence.*;
-import org.antlr.v4.runtime.misc.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 

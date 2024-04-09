@@ -2,7 +2,8 @@ package com.team3.essence.lavib.essence_lab.entities;
 
 import com.team3.essence.lavib.essence_lab.Enum.RecordStatusEnum;
 import jakarta.persistence.*;
-import org.antlr.v4.runtime.misc.NotNull;
+import jakarta.validation.constraints.NotNull;
+
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class Negozio {
     private String indirizzo_negozio;
     @Column(nullable = false)
     private String partita_iva_negozio;
-    @OneToMany(mappedBy = "profumo")
+    @OneToMany(mappedBy = "negozio")
     private List<Profumo> profumi;
     @Enumerated(EnumType.STRING)
     @NotNull

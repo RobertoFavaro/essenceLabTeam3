@@ -90,7 +90,7 @@ public class NegozioService {
      * @return
      */
     public Optional<List<Negozio>> getByRecordStatusInactive(){
-        Optional<List<Negozio>> listNegozi = Optional.ofNullable(negozioRepository.findByRecordStatus(RecordStatusEnum.I));
+        Optional<List<Negozio>> listNegozi = Optional.ofNullable(negozioRepository.findByRecordStatusEnum(RecordStatusEnum.I));
         return listNegozi;
     }
 }

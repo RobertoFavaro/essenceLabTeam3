@@ -1,6 +1,5 @@
 package com.team3.essence.lavib.essence_lab.controllers;
 
-import com.team3.essence.lavib.essence_lab.entities.Cliente;
 import com.team3.essence.lavib.essence_lab.entities.Essenza;
 import com.team3.essence.lavib.essence_lab.services.EssenzaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +30,7 @@ public class EssenzaController {
      *
      * @return Lista completa delle essenze
      */
-    @GetMapping("/getListaEssenza")
+    @GetMapping("/viewAll")
     public ResponseEntity<List<Essenza>> getListaEssenza(){
         List<Essenza> essenzaView = essenzaService.getAllEssenze();
         return ResponseEntity.ok().body(essenzaView);

@@ -1,7 +1,8 @@
 package com.team3.essence.lavib.essence_lab.controllers;
 
+
+
 import com.team3.essence.lavib.essence_lab.entities.Carrello;
-import com.team3.essence.lavib.essence_lab.entities.Cliente;
 import com.team3.essence.lavib.essence_lab.services.CarrelloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,20 +16,34 @@ import java.util.Optional;
 public class CarrelloController {
     @Autowired
     private CarrelloService carrelloService;
-
-    @PostMapping("/addCarrello")
-    public ResponseEntity<Carrello> addCarrello(@RequestBody Carrello carrello) {
-        Carrello carrelloToAdd = carrelloService.addCarrello(carrello);
-        return ResponseEntity.ok().body(carrelloToAdd);
+    /**
+     *
+     * @param carrello
+     * @return carrello aggiunto.
+     */
+    @PostMapping("/add")
+    public ResponseEntity<Carrello> postCarrello(@RequestBody Carrello carrello) {
+        Carrello carrelloAdded = carrelloService.addCarrello(carrello);
+        return ResponseEntity.ok().body(carrelloAdded);
     }
 
-    @GetMapping("/getAllCarrelli")
-    public ResponseEntity<List<Carrello>> getCarrelli() {
+    /**
+     *
+     * @return  mostra la lista completa dei carrelli attivi.
+     */
+    @GetMapping("/viewAll")
+    public ResponseEntity<List<Carrello>> getAllCarrelli() {
         List<Carrello> carrelloView = carrelloService.getCarrelli();
         return ResponseEntity.ok().body(carrelloView);
     }
 
-    @GetMapping("/getSingleCarrello/{id}")
+    /**
+     *
+     * @param id con l'id cerca carrello
+     * @return mostra il carrello trovato o se non esiste mostra "not found".
+     */
+
+    @GetMapping("/viewSingle/{id}")
     public ResponseEntity<Carrello> getCarrello(@PathVariable Long id) {
         Optional<Carrello> carrelloOptional = carrelloService.getCarrello(id);
         if (carrelloOptional.isEmpty()) {
@@ -37,7 +52,13 @@ public class CarrelloController {
         return ResponseEntity.ok().body(carrelloOptional.get());
     }
 
-    @PutMapping("/updateCarrello/{id}")
+    /**
+     *
+     * @param id con l'id cerca i carrelli
+     * @param carrello
+     * @return mostra i carrelli aggiornati se ci sono altrimenti mostra "not found"
+     */
+    @PutMapping("/update/{id}")
     public ResponseEntity<Carrello> updateCarrello(
             @PathVariable Long id,
             @RequestBody Carrello carrello) {
@@ -47,9 +68,42 @@ public class CarrelloController {
         }
         return ResponseEntity.ok().body(carrelloOptional.get());
     }
-    @DeleteMapping("/deleteCarrello/{id}")
+
+    /**
+     *
+     * @param id con l'id cerca i carrelli
+     * @return mostra il carrello e lo disattiva se c'è altrimenti mostra "not found"
+     */
+    @DeleteMapping("/deactive/{id}")
     public ResponseEntity<Carrello> deleteCarrelloById(@PathVariable Long id) {
-        Optional<Carrello> carrelloOptional = carrelloService.deleteCarrelloById(id);
+        Optional<Carrello> carrelloOptional = carrelloService.deactiveCarrelloById(id);
+        if (carrelloOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(carrelloOptional.get());
+    }
+
+    /**
+     *
+     * @return tutti i carrelli inattivi
+     */
+    @GetMapping("/viewInactive")
+    public ResponseEntity<List<Carrello>> findByInactive(){
+        Optional<List<Carrello>> listCarrello = carrelloService.getByRecordStatusInactive();
+        if (listCarrello.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(listCarrello.get());
+    }
+
+    /**
+     *
+     * @param id con l'id cerca i carrelli
+     * @return mostra il carrello e lo attiva se c'è altrimenti mostra "not found"
+     */
+    @DeleteMapping("/active/{id}")
+    public ResponseEntity<Carrello> activeCarrelloById(@PathVariable Long id) {
+        Optional<Carrello> carrelloOptional = carrelloService.activeCarrelloById(id);
         if (carrelloOptional.isEmpty()) {
             return ResponseEntity.notFound().build();
         }

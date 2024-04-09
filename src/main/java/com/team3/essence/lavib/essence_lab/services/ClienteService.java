@@ -3,7 +3,6 @@ package com.team3.essence.lavib.essence_lab.services;
 
 import com.team3.essence.lavib.essence_lab.Enum.RecordStatusEnum;
 import com.team3.essence.lavib.essence_lab.entities.Cliente;
-
 import com.team3.essence.lavib.essence_lab.repositories.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,7 +35,7 @@ public class ClienteService {
     /**
      *
      * @param id
-     * @return mostra i cliente cercata tramite id;
+     * @return mostra i clienti cercata tramite id;
      */
     public Optional<Cliente> getCliente(Long id) {
         return clienteRepository.findById(id);
@@ -101,7 +100,7 @@ public class ClienteService {
      * @return tutti i clienti inattivi
      */
     public Optional<List<Cliente>> getByRecordStatusInactive(){
-        Optional<List<Cliente>> listClient = Optional.ofNullable(clienteRepository.findByRecordStatus(RecordStatusEnum.I));
+        Optional<List<Cliente>> listClient = Optional.ofNullable(clienteRepository.findByRecordStatusEnum(RecordStatusEnum.I));
         return listClient;
     }
 

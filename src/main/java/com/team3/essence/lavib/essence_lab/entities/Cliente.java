@@ -2,8 +2,7 @@ package com.team3.essence.lavib.essence_lab.entities;
 
 import com.team3.essence.lavib.essence_lab.Enum.RecordStatusEnum;
 import jakarta.persistence.*;
-import org.antlr.v4.runtime.misc.NotNull;
-import org.springframework.lang.NonNull;
+import jakarta.validation.constraints.NotNull;
 
 @Table
 @Entity
@@ -32,8 +31,7 @@ public class Cliente {
     @ManyToOne
     @JoinColumn(name = "carrello_id")
     private Carrello carrello;
-
-    public Cliente() {}
+    public Cliente(){}
 
     public Cliente(Long id, String nome_cliente, String cognome_cliente, String genere_cliente, String email_cliente, String codiceFiscale_cliente, Integer eta_cliente, String indirizzo_cliente, RecordStatusEnum recordStatusEnum, Carrello carrello) {
         this.id = id;
@@ -45,14 +43,6 @@ public class Cliente {
         this.eta_cliente = eta_cliente;
         this.indirizzo_cliente = indirizzo_cliente;
         this.recordStatusEnum = recordStatusEnum;
-        this.carrello = carrello;
-    }
-
-    public Carrello getCarrello() {
-        return carrello;
-    }
-
-    public void setCarrello(Carrello carrello) {
         this.carrello = carrello;
     }
 
@@ -126,5 +116,13 @@ public class Cliente {
 
     public void setRecordStatusEnum(RecordStatusEnum recordStatusEnum) {
         this.recordStatusEnum = recordStatusEnum;
+    }
+
+    public Carrello getCarrello() {
+        return carrello;
+    }
+
+    public void setCarrello(Carrello carrello) {
+        this.carrello = carrello;
     }
 }
