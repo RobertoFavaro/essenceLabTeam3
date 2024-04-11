@@ -11,19 +11,19 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    private String nome_cliente;
+    private String nome;
     @Column(nullable = false)
-    private String cognome_cliente;
+    private String cognome;
     @Column(nullable = false)
-    private String genere_cliente;
+    private String genere;
     @Column(nullable = false, unique = true)
-    private String email_cliente;
+    private String email;
     @Column(nullable = false, unique = true)
-    private String codiceFiscale_cliente;
+    private String codiceFiscale;
     @Column(nullable = false)
-    private Integer eta_cliente;
+    private Integer eta;
     @Column(nullable = false)
-    private String indirizzo_cliente;
+    private String indirizzo;
     @Enumerated(EnumType.STRING)
     @NotNull
     @Column(name = "record_status", nullable = false, length = 1)
@@ -35,13 +35,13 @@ public class Cliente {
 
     public Cliente(Long id, String nome_cliente, String cognome_cliente, String genere_cliente, String email_cliente, String codiceFiscale_cliente, Integer eta_cliente, String indirizzo_cliente, RecordStatusEnum recordStatusEnum, Carrello carrello) {
         this.id = id;
-        this.nome_cliente = nome_cliente;
-        this.cognome_cliente = cognome_cliente;
-        this.genere_cliente = genere_cliente;
-        this.email_cliente = email_cliente;
-        this.codiceFiscale_cliente = codiceFiscale_cliente;
-        this.eta_cliente = eta_cliente;
-        this.indirizzo_cliente = indirizzo_cliente;
+        this.nome = nome_cliente;
+        this.cognome = cognome_cliente;
+        this.genere = genere_cliente;
+        this.email = email_cliente;
+        this.codiceFiscale = codiceFiscale_cliente;
+        this.eta = eta_cliente;
+        this.indirizzo = indirizzo_cliente;
         this.recordStatusEnum = recordStatusEnum;
         this.carrello = carrello;
     }
@@ -54,60 +54,60 @@ public class Cliente {
         this.id = id;
     }
 
-    public String getNome_cliente() {
-        return nome_cliente;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNome_cliente(String nome_cliente) {
-        this.nome_cliente = nome_cliente;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getCognome_cliente() {
-        return cognome_cliente;
+    public String getCognome() {
+        return cognome;
     }
 
-    public void setCognome_cliente(String cognome_cliente) {
-        this.cognome_cliente = cognome_cliente;
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
     }
 
-    public String getGenere_cliente() {
-        return genere_cliente;
+    public String getGenere() {
+        return genere;
     }
 
-    public void setGenere_cliente(String genere_cliente) {
-        this.genere_cliente = genere_cliente;
+    public void setGenere(String genere) {
+        this.genere = genere;
     }
 
-    public String getEmail_cliente() {
-        return email_cliente;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmail_cliente(String email_cliente) {
-        this.email_cliente = email_cliente;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getCodiceFiscale_cliente() {
-        return codiceFiscale_cliente;
+    public String getCodiceFiscale() {
+        return codiceFiscale;
     }
 
-    public void setCodiceFiscale_cliente(String codiceFiscale_cliente) {
-        this.codiceFiscale_cliente = codiceFiscale_cliente;
+    public void setCodiceFiscale(String codiceFiscale) {
+        this.codiceFiscale = codiceFiscale;
     }
 
-    public Integer getEta_cliente() {
-        return eta_cliente;
+    public Integer getEta() {
+        return eta;
     }
 
-    public void setEta_cliente(Integer eta_cliente) {
-        this.eta_cliente = eta_cliente;
+    public void setEta(Integer eta) {
+        this.eta = eta;
     }
 
-    public String getIndirizzo_cliente() {
-        return indirizzo_cliente;
+    public String getIndirizzo() {
+        return indirizzo;
     }
 
-    public void setIndirizzo_cliente(String indirizzo_cliente) {
-        this.indirizzo_cliente = indirizzo_cliente;
+    public void setIndirizzo(String indirizzo) {
+        this.indirizzo = indirizzo;
     }
 
     public RecordStatusEnum getRecordStatusEnum() {

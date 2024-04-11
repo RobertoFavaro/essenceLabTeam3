@@ -16,15 +16,15 @@ public class Profumo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    private String nome_profumo;
+    private String nome;
     @Column(nullable = false)
-    private String descrizione_profumo;
+    private String descrizione;
     @Column(nullable = false)
-    private String ingredienti_profumo;
+    private String ingredienti;
     @Column(nullable = false)
-    private Double prezzo_profumo;
+    private Double prezzo;
     @Column(nullable = false)
-    private String allergeni_profumo;
+    private String allergeni;
     @OneToMany(mappedBy = "profumo")
     private List<Essenza> essenze;
     @ManyToOne
@@ -47,11 +47,11 @@ public class Profumo {
 
     public Profumo(Long id, String nome_profumo, String descrizione_profumo, String ingredienti_profumo, Double prezzo_profumo, String allergeni_profumo, List<Essenza> essenze, Negozio negozio, RecordStatusEnum recordStatusEnum, EnumTipoProfumo enumTipoProfumo, EnumMarcaProfumo enumMarcaProfumo, EnumCategoriaProfumo enumCategoriaProfumo, Carrello carrello) {
         this.id = id;
-        this.nome_profumo = nome_profumo;
-        this.descrizione_profumo = descrizione_profumo;
-        this.ingredienti_profumo = ingredienti_profumo;
-        this.prezzo_profumo = prezzo_profumo;
-        this.allergeni_profumo = allergeni_profumo;
+        this.nome = nome_profumo;
+        this.descrizione = descrizione_profumo;
+        this.ingredienti = ingredienti_profumo;
+        this.prezzo = prezzo_profumo;
+        this.allergeni = allergeni_profumo;
         this.essenze = essenze;
         this.negozio = negozio;
         this.recordStatusEnum = recordStatusEnum;
@@ -77,44 +77,44 @@ public class Profumo {
         this.id = id;
     }
 
-    public String getNome_profumo() {
-        return nome_profumo;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNome_profumo(String nome_profumo) {
-        this.nome_profumo = nome_profumo;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getDescrizione_profumo() {
-        return descrizione_profumo;
+    public String getDescrizione() {
+        return descrizione;
     }
 
-    public void setDescrizione_profumo(String descrizione_profumo) {
-        this.descrizione_profumo = descrizione_profumo;
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
     }
 
-    public String getIngredienti_profumo() {
-        return ingredienti_profumo;
+    public String getIngredienti() {
+        return ingredienti;
     }
 
-    public void setIngredienti_profumo(String ingredienti_profumo) {
-        this.ingredienti_profumo = ingredienti_profumo;
+    public void setIngredienti(String ingredienti) {
+        this.ingredienti = ingredienti;
     }
 
-    public Double getPrezzo_profumo() {
-        return prezzo_profumo;
+    public Double getPrezzo() {
+        return prezzo;
     }
 
-    public void setPrezzo_profumo(Double prezzo_profumo) {
-        this.prezzo_profumo = prezzo_profumo;
+    public void setPrezzo(Double prezzo) {
+        this.prezzo = prezzo;
     }
 
-    public String getAllergeni_profumo() {
-        return allergeni_profumo;
+    public String getAllergeni() {
+        return allergeni;
     }
 
-    public void setAllergeni_profumo(String allergeni_profumo) {
-        this.allergeni_profumo = allergeni_profumo;
+    public void setAllergeni(String allergeni) {
+        this.allergeni = allergeni;
     }
 
     public List<Essenza> getEssenze() {

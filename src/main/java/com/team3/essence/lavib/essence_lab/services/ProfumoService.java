@@ -15,6 +15,7 @@ public class ProfumoService {
     private ProfumoRepository profumoRepository;
 
     /**
+     *
      * @param profumo
      * @return Salva l'oggetto e lo ritorna;
      */
@@ -23,33 +24,37 @@ public class ProfumoService {
     }
 
     /**
-     * @return Ritorna la lista dei profumi;
+     *
+     * @return mostra la lista di tutti i profumi;
      */
     public List<Profumo> getAllProfumi() {
         return profumoRepository.findAllActiveProfumi();
     }
 
     /**
+     *
      * @param id
-     * @return Ritorna il profumo cercato tramite id;
+     * @return mostra il profumo cercato tramite id;
      */
     public Optional<Profumo> getProfumoId(Long id) {
         return profumoRepository.findById(id);
     }
 
     /**
-     * @param id              per cercare il profumo da aggiornare
+     *
      * @param profumoToUpdate
-     * @return Profumo aggiornata o un oggetto vuoto se non è presente
+     * @param id
+     * @return cerca il profumo tramite l'id, lo aggiorna e lo
+     *         mostra aggiornato o se non è presente mostra un oggetto vuoto
      */
     public Optional<Profumo> updateProfumoId(Long id, Profumo profumoToUpdate) {
         Optional<Profumo> profumoUpdate = profumoRepository.findById(id);
         if (profumoUpdate.isPresent()) {
-            profumoUpdate.get().setAllergeni_profumo(profumoToUpdate.getAllergeni_profumo());
-            profumoUpdate.get().setDescrizione_profumo(profumoToUpdate.getDescrizione_profumo());
-            profumoUpdate.get().setIngredienti_profumo(profumoToUpdate.getIngredienti_profumo());
-            profumoUpdate.get().setNome_profumo(profumoToUpdate.getNome_profumo());
-            profumoUpdate.get().setPrezzo_profumo(profumoToUpdate.getPrezzo_profumo());
+            profumoUpdate.get().setAllergeni(profumoToUpdate.getAllergeni());
+            profumoUpdate.get().setDescrizione(profumoToUpdate.getDescrizione());
+            profumoUpdate.get().setIngredienti(profumoToUpdate.getIngredienti());
+            profumoUpdate.get().setNome(profumoToUpdate.getNome());
+            profumoUpdate.get().setPrezzo(profumoToUpdate.getPrezzo());
             profumoUpdate.get().setEnumMarcaProfumo(profumoToUpdate.getEnumMarcaProfumo());
             profumoUpdate.get().setEnumTipoProfumo(profumoToUpdate.getEnumTipoProfumo());
             profumoUpdate.get().setEssenze(profumoToUpdate.getEssenze());
@@ -61,13 +66,15 @@ public class ProfumoService {
     }
 
     /**
+     *
      * @param id
-     * @return il recordStatusEnum diventa inattivo
+     * @return il recordStatusEnum del profumo inattivo
      */
-    public Optional<Profumo> deactiveProfumoById(Long id) {
+    public Optional<Profumo> deleteProfumoById(Long id) {
         Optional<Profumo> profumoOptional = profumoRepository.findById(id);
         if (profumoOptional.isPresent()) {
             profumoOptional.get().setRecordStatusEnum(RecordStatusEnum.I);
+            profumoRepository.save(profumoOptional.get());
         } else {
             return Optional.empty();
         }
@@ -75,10 +82,10 @@ public class ProfumoService {
     }
 
     /**
+     *
      * @param id
-     * @return il recordStatusEnum diventa attivo
+     * @return il recordStatusEnum del profumo attivo
      */
-
     public Optional<Profumo> activeProfumopById(Long id) {
         Optional<Profumo> profumoOptional = profumoRepository.findById(id);
         if (profumoOptional.isPresent()) {
@@ -98,6 +105,7 @@ public class ProfumoService {
     }
 
     /**
+     *
      * @return tutti i profumi inattivi
      */
     public Optional<List<Profumo>> getByRecordStatusInactive() {

@@ -26,7 +26,7 @@ public class ClienteService {
 
     /**
      *
-     * @return mostra la lista di tutti i cliente;
+     * @return mostra la lista di tutti i clienti;
      */
     public List<Cliente> getAllCliente(){
        return clienteRepository.findAllActiveCliente();
@@ -35,7 +35,7 @@ public class ClienteService {
     /**
      *
      * @param id
-     * @return mostra i clienti cercata tramite id;
+     * @return mostra il cliente cercato tramite id;
      */
     public Optional<Cliente> getCliente(Long id) {
         return clienteRepository.findById(id);
@@ -43,22 +43,21 @@ public class ClienteService {
 
     /**
      *
-     * @param cliente per cercare il cliente da aggiornare
+     * @param cliente
      * @param id
-     * @return mostra il cliente aggiornata o un oggetto vuoto se non è presente
+     * @return cerca il cliente tramite l'id, lo aggiorna e lo
+     *         mostra aggiornato o se non è presente mostra un oggetto vuoto
      */
-
     public Optional<Cliente> updateCliente(Cliente cliente, Long id) {
         Optional<Cliente> clienteOptional = clienteRepository.findById(id);
         if (clienteOptional.isPresent()) {
-            clienteOptional.get().setNome_cliente(cliente.getNome_cliente());
-            clienteOptional.get().setCognome_cliente(cliente.getCognome_cliente());
-            clienteOptional.get().setEmail_cliente(cliente.getEmail_cliente());
-            clienteOptional.get().setCodiceFiscale_cliente(cliente.getCodiceFiscale_cliente());
+            clienteOptional.get().setNome(cliente.getNome());
+            clienteOptional.get().setCognome(cliente.getCognome());
+            clienteOptional.get().setEmail(cliente.getEmail());
+            clienteOptional.get().setCodiceFiscale(cliente.getCodiceFiscale());
             clienteOptional.get().setRecordStatusEnum(cliente.getRecordStatusEnum());
-            clienteOptional.get().setId(cliente.getId());
-            clienteOptional.get().setEta_cliente(cliente.getEta_cliente());
-            clienteOptional.get().setGenere_cliente(cliente.getGenere_cliente());
+            clienteOptional.get().setEta(cliente.getEta());
+            clienteOptional.get().setGenere(cliente.getGenere());
             Cliente clienteUpdated = clienteRepository.save(clienteOptional.get());
             return Optional.of(clienteUpdated);
         } else {
@@ -69,21 +68,23 @@ public class ClienteService {
     /**
      *
      * @param id
-     * @return il recordStatusEnum diventa inattivo
+     * @return il recordStatusEnum del cliente inattivo
      */
-    public Optional<Cliente> deactiveClienteById(Long id) {
+    public Optional<Cliente> deleteClienteById(Long id) {
         Optional<Cliente> clienteOptional = clienteRepository.findById(id);
         if (clienteOptional.isPresent()) {
             clienteOptional.get().setRecordStatusEnum(RecordStatusEnum.I);
+            clienteRepository.save(clienteOptional.get());
         } else {
             return Optional.empty();
         }
         return clienteOptional;
     }
+
     /**
      *
      * @param id
-     * @return il recordStatusEnum diventa attivo
+     * @return il recordStatusEnum del cliente attivo
      */
     public Optional<Cliente> activeClienteById(Long id) {
         Optional<Cliente> clienteOptional = clienteRepository.findById(id);
@@ -104,20 +105,4 @@ public class ClienteService {
         return listClient;
     }
 
-    /*
-    /**
-     *
-     * @param id per cercare il cliente da eliminare
-     * @return mostra il cliente eliminata o un oggetto vuoto se non esiste
-     */
-/*
-    public Optional<Cliente> deleteClienteById(Long id) {
-        Optional<Cliente> clienteOptional = clienteRepository.findById(id);
-        if (clienteOptional.isPresent()) {
-            clienteRepository.delete(clienteOptional.get());
-        } else {
-            return Optional.empty();
-        }
-        return clienteOptional;
-    }*/
 }

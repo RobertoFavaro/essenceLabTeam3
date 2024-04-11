@@ -16,34 +16,17 @@ import java.util.Optional;
 public class CarrelloController {
     @Autowired
     private CarrelloService carrelloService;
-    /**
-     *
-     * @param carrello
-     * @return carrello aggiunto.
-     */
-    @PostMapping("/add")
+    @PostMapping("/create")
     public ResponseEntity<Carrello> postCarrello(@RequestBody Carrello carrello) {
         Carrello carrelloAdded = carrelloService.addCarrello(carrello);
         return ResponseEntity.ok().body(carrelloAdded);
     }
-
-    /**
-     *
-     * @return  mostra la lista completa dei carrelli attivi.
-     */
-    @GetMapping("/viewAll")
+    @GetMapping("/readAll")
     public ResponseEntity<List<Carrello>> getAllCarrelli() {
         List<Carrello> carrelloView = carrelloService.getCarrelli();
         return ResponseEntity.ok().body(carrelloView);
     }
-
-    /**
-     *
-     * @param id con l'id cerca carrello
-     * @return mostra il carrello trovato o se non esiste mostra "not found".
-     */
-
-    @GetMapping("/viewSingle/{id}")
+    @GetMapping("/readSingle/{id}")
     public ResponseEntity<Carrello> getCarrello(@PathVariable Long id) {
         Optional<Carrello> carrelloOptional = carrelloService.getCarrello(id);
         if (carrelloOptional.isEmpty()) {
@@ -51,13 +34,6 @@ public class CarrelloController {
         }
         return ResponseEntity.ok().body(carrelloOptional.get());
     }
-
-    /**
-     *
-     * @param id con l'id cerca i carrelli
-     * @param carrello
-     * @return mostra i carrelli aggiornati se ci sono altrimenti mostra "not found"
-     */
     @PutMapping("/update/{id}")
     public ResponseEntity<Carrello> updateCarrello(
             @PathVariable Long id,
@@ -68,26 +44,15 @@ public class CarrelloController {
         }
         return ResponseEntity.ok().body(carrelloOptional.get());
     }
-
-    /**
-     *
-     * @param id con l'id cerca i carrelli
-     * @return mostra il carrello e lo disattiva se c'è altrimenti mostra "not found"
-     */
-    @PutMapping("/deactive/{id}")
+    @PutMapping("/delete/{id}")
     public ResponseEntity<Carrello> deleteCarrelloById(@PathVariable Long id) {
-        Optional<Carrello> carrelloOptional = carrelloService.deactiveCarrelloById(id);
+        Optional<Carrello> carrelloOptional = carrelloService.deleteCarrelloById(id);
         if (carrelloOptional.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().body(carrelloOptional.get());
     }
-
-    /**
-     *
-     * @return tutti i carrelli inattivi
-     */
-    @GetMapping("/viewInactive")
+    @GetMapping("/readInactive")
     public ResponseEntity<List<Carrello>> findByInactive(){
         Optional<List<Carrello>> listCarrello = carrelloService.getByRecordStatusInactive();
         if (listCarrello.isEmpty()) {
@@ -95,18 +60,4 @@ public class CarrelloController {
         }
         return ResponseEntity.ok().body(listCarrello.get());
     }
-
-//    /**
-//     *
-//     * @param id con l'id cerca i carrelli
-//     * @return mostra il carrello e lo attiva se c'è altrimenti mostra "not found"
-//     */
-//    @DeleteMapping("/active/{id}")
-//    public ResponseEntity<Carrello> activeCarrelloById(@PathVariable Long id) {
-//        Optional<Carrello> carrelloOptional = carrelloService.activeCarrelloById(id);
-//        if (carrelloOptional.isEmpty()) {
-//            return ResponseEntity.notFound().build();
-//        }
-//        return ResponseEntity.ok().body(carrelloOptional.get());
-//    }
 }

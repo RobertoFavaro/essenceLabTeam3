@@ -12,15 +12,15 @@ public class Essenza {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    private String nome_essenza;
+    private String nome;
     @Column(nullable = false)
-    private String allergeni_essenza;
+    private String allergeni;
     @Column(nullable = false)
-    private String descrizione_essenza;
+    private String descrizione;
     @Column(nullable = false)
-    private Double prezzo_essenza;
+    private Double prezzo;
     @Column(nullable = false)
-    private String ingredienti_essenza;
+    private String ingredienti;
     @ManyToOne
     @JoinColumn(name = "profumo_id")
     private Profumo profumo;
@@ -36,11 +36,11 @@ public class Essenza {
 
     public Essenza(Long id, String nome_essenza, String allergeni_essenza, String descrizione_essenza, Double prezzo_essenza, String ingredienti_essenza, Profumo profumo, RecordStatusEnum recordStatusEnum, EnumTipoEssenza enumTipoEssenza) {
         this.id = id;
-        this.nome_essenza = nome_essenza;
-        this.allergeni_essenza = allergeni_essenza;
-        this.descrizione_essenza = descrizione_essenza;
-        this.prezzo_essenza = prezzo_essenza;
-        this.ingredienti_essenza = ingredienti_essenza;
+        this.nome = nome_essenza;
+        this.allergeni = allergeni_essenza;
+        this.descrizione = descrizione_essenza;
+        this.prezzo = prezzo_essenza;
+        this.ingredienti = ingredienti_essenza;
         this.profumo = profumo;
         this.recordStatusEnum = recordStatusEnum;
         this.enumTipoEssenza = enumTipoEssenza;
@@ -54,44 +54,44 @@ public class Essenza {
         this.id = id;
     }
 
-    public String getNome_essenza() {
-        return nome_essenza;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNome_essenza(String nome_essenza) {
-        this.nome_essenza = nome_essenza;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getAllergeni_essenza() {
-        return allergeni_essenza;
+    public String getAllergeni() {
+        return allergeni;
     }
 
-    public void setAllergeni_essenza(String allergeni_essenza) {
-        this.allergeni_essenza = allergeni_essenza;
+    public void setAllergeni(String allergeni) {
+        this.allergeni = allergeni;
     }
 
-    public String getDescrizione_essenza() {
-        return descrizione_essenza;
+    public String getDescrizione() {
+        return descrizione;
     }
 
-    public void setDescrizione_essenza(String descrizione_essenza) {
-        this.descrizione_essenza = descrizione_essenza;
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
     }
 
-    public Double getPrezzo_essenza() {
-        return prezzo_essenza;
+    public Double getPrezzo() {
+        return prezzo;
     }
 
-    public void setPrezzo_essenza(Double prezzo_essenza) {
-        this.prezzo_essenza = prezzo_essenza;
+    public void setPrezzo(Double prezzo) {
+        this.prezzo = prezzo;
     }
 
-    public String getIngredienti_essenza() {
-        return ingredienti_essenza;
+    public String getIngredienti() {
+        return ingredienti;
     }
 
-    public void setIngredienti_essenza(String ingredienti_essenza) {
-        this.ingredienti_essenza = ingredienti_essenza;
+    public void setIngredienti(String ingredienti) {
+        this.ingredienti = ingredienti;
     }
 
     public Profumo getProfumo() {

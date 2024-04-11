@@ -14,31 +14,17 @@ import java.util.Optional;
 public class NegozioController {
     @Autowired
     private NegozioService negozioService;
-
-    /**
-     * @param negozio
-     * @return negozio aggiunto.
-     */
-    @PostMapping("/add")
+    @PostMapping("/create")
     public ResponseEntity<Negozio> addNegozio(@RequestBody Negozio negozio){
         Negozio negozioAdded = negozioService.addNegozio(negozio);
         return ResponseEntity.ok().body(negozioAdded);
     }
-
-    /**
-     * @return mostra la lista completa dei negozi.
-     */
-    @GetMapping ("/viewAll")
+    @GetMapping ("/readAll")
     public ResponseEntity<List<Negozio>> getAllNegozio (){
         List<Negozio> negozioView = negozioService.getAllNegozio();
         return ResponseEntity.ok().body(negozioView);
     }
-
-    /**
-     * @param id con l'id cerca negozio
-     * @return mostra il negozio trovato o se non esiste mostra "not found".
-     */
-    @GetMapping ("/viewSingle/{id}")
+    @GetMapping ("/readSingle/{id}")
     public ResponseEntity<Negozio> getNegozioId (@PathVariable Long id){
         Optional<Negozio> negozioOptional = negozioService.getNegozioId(id);
         if (negozioOptional.isPresent()){
@@ -46,12 +32,6 @@ public class NegozioController {
         }
         return ResponseEntity.notFound().build();
     }
-
-    /**
-     * @param id con l'id cerca i negozi
-     * @param negozio
-     * @return mostra i negozi aggiornati se ci sono altrimenti mostra "not found"
-     */
     @PutMapping ("/update/{id}")
     public ResponseEntity<Negozio> updateNegozio (@PathVariable Long id, @RequestBody Negozio negozio){
         Optional <Negozio> negozioToUpdate = negozioService.updateNegozio(id, negozio);
@@ -60,25 +40,15 @@ public class NegozioController {
         }
         return ResponseEntity.notFound().build();
     }
-
-    /**
-     * @param id con l'id cerca i clienti
-     * @return mostra il cliente e lo disattiva se c'è altrimenti mostra "not found"
-     */
-    @PutMapping ("/deactive/{id}")
-    public ResponseEntity<Negozio> deleteNegozio (@PathVariable Long id){
-        Optional <Negozio> deleteNegozio = negozioService.deactivateNegozioById(id);
+    @PutMapping ("/delete/{id}")
+    public ResponseEntity<Negozio> deleteNegozio(@PathVariable Long id){
+        Optional <Negozio> deleteNegozio = negozioService.deleteteNegozioById(id);
         if (deleteNegozio.isPresent()){
             return ResponseEntity.ok().body(deleteNegozio.get());
         }
         return ResponseEntity.notFound().build();
     }
-    /**
-     *
-     * @return tutti i clienti inattivi
-     */
-
-    @GetMapping ("/viewInactive")
+    @GetMapping ("/readInactive")
     public ResponseEntity<List<Negozio>> findByInactive (){
         Optional<List<Negozio>> listNegozi = negozioService.getByRecordStatusInactive();
         if (listNegozi.isEmpty()){
@@ -86,18 +56,4 @@ public class NegozioController {
         }
         return ResponseEntity.ok().body(listNegozi.get());
     }
-
-    //    /**
-    //     *
-    //     * @param id con l'id cerca i clienti
-    //     * @return mostra il cliente e lo attiva se c'è altrimenti mostra "not found"
-    //     */
-//    @GetMapping ("/active{id}")
-//    public ResponseEntity<Negozio> activeNegozioById (@PathVariable Long id){
-//        Optional<Negozio> listNegozi = negozioService.activeNegozioById(id);
-//        if (listNegozi.isEmpty()){
-//            return ResponseEntity.notFound().build();
-//        }
-//        return ResponseEntity.ok().body(listNegozi.get());
-//    }
 }

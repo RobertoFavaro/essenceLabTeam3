@@ -23,6 +23,7 @@ public class CarrelloService {
     public Carrello addCarrello(Carrello carrello){
         return carrelloRepository.save(carrello);
     }
+
     /**
      *
      * @return mostra la lista di tutti i carrelli;
@@ -30,19 +31,22 @@ public class CarrelloService {
     public List<Carrello> getCarrelli() {
         return carrelloRepository.findAllActiveCarrelli();
     }
+
     /**
      *
      * @param id
-     * @return mostra i carrelli cercata tramite id;
+     * @return mostra il carrello cercato tramite id;
      */
     public Optional<Carrello> getCarrello(Long id){
         return carrelloRepository.findById(id);
     }
+
     /**
      *
-     * @param carrello per cercare il carrello da aggiornare
+     * @param carrello
      * @param id
-     * @return mostra il carrello aggiornata o un oggetto vuoto se non è presente
+     * @return cerca il carrello tramite l'id, lo aggiorna e lo
+     *         mostra aggiornato o se non è presente mostra un oggetto vuoto
      */
     public Optional<Carrello> updateCarrello(Carrello carrello, Long id) {
         Optional<Carrello> carrelloOptional = carrelloRepository.findById(id);
@@ -56,12 +60,13 @@ public class CarrelloService {
             return Optional.empty();
         }
     }
+
     /**
      *
      * @param id
-     * @return il recordStatusEnum diventa inattivo
+     * @return il recordStatusEnum del carrello inattivo
      */
-    public Optional<Carrello> deactiveCarrelloById(Long id) {
+    public Optional<Carrello> deleteCarrelloById(Long id) {
         Optional<Carrello> carrelloOptional = carrelloRepository.findById(id);
         if (carrelloOptional.isPresent()) {
             carrelloOptional.get().setRecordStatusEnum(RecordStatusEnum.I);
@@ -71,10 +76,11 @@ public class CarrelloService {
         }
         return carrelloOptional;
     }
+
     /**
      *
      * @param id
-     * @return il recordStatusEnum diventa attivo
+     * @return il recordStatusEnum del carrello attivo
      */
     public Optional<Carrello> activeCarrelloById(Long id) {
         Optional<Carrello> carrelloOptional = carrelloRepository.findById(id);

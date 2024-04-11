@@ -14,13 +14,13 @@ public class Negozio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    private String nome_negozio;
+    private String nome;
     @Column(nullable = false)
-    private String luogo_negozio;
+    private String luogo;
     @Column(nullable = false, unique = true)
-    private String indirizzo_negozio;
+    private String indirizzo;
     @Column(nullable = false)
-    private String partita_iva_negozio;
+    private String partita_iva;
     @OneToMany(mappedBy = "negozio")
     private List<Profumo> profumi;
     @Enumerated(EnumType.STRING)
@@ -32,10 +32,10 @@ public class Negozio {
 
     public Negozio(Long id, String nome_negozio, String luogo_negozio, String indirizzo_negozio, String partita_iva_negozio, List<Profumo> profumi, RecordStatusEnum recordStatusEnum) {
         this.id = id;
-        this.nome_negozio = nome_negozio;
-        this.luogo_negozio = luogo_negozio;
-        this.indirizzo_negozio = indirizzo_negozio;
-        this.partita_iva_negozio = partita_iva_negozio;
+        this.nome = nome_negozio;
+        this.luogo = luogo_negozio;
+        this.indirizzo = indirizzo_negozio;
+        this.partita_iva = partita_iva_negozio;
         this.profumi = profumi;
         this.recordStatusEnum = recordStatusEnum;
     }
@@ -48,36 +48,36 @@ public class Negozio {
         this.id = id;
     }
 
-    public String getNome_negozio() {
-        return nome_negozio;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNome_negozio(String nome_negozio) {
-        this.nome_negozio = nome_negozio;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getLuogo_negozio() {
-        return luogo_negozio;
+    public String getLuogo() {
+        return luogo;
     }
 
-    public void setLuogo_negozio(String luogo_negozio) {
-        this.luogo_negozio = luogo_negozio;
+    public void setLuogo(String luogo) {
+        this.luogo = luogo;
     }
 
-    public String getIndirizzo_negozio() {
-        return indirizzo_negozio;
+    public String getIndirizzo() {
+        return indirizzo;
     }
 
-    public void setIndirizzo_negozio(String indirizzo_negozio) {
-        this.indirizzo_negozio = indirizzo_negozio;
+    public void setIndirizzo(String indirizzo) {
+        this.indirizzo = indirizzo;
     }
 
-    public String getPartita_iva_negozio() {
-        return partita_iva_negozio;
+    public String getPartita_iva() {
+        return partita_iva;
     }
 
-    public void setPartita_iva_negozio(String partita_iva_negozio) {
-        this.partita_iva_negozio = partita_iva_negozio;
+    public void setPartita_iva(String partita_iva) {
+        this.partita_iva = partita_iva;
     }
 
     public List<Profumo> getProfumi() {

@@ -14,31 +14,17 @@ import java.util.Optional;
 public class ProfumoController {
     @Autowired
     private ProfumoService profumoService;
-
-    /**
-     * @param profumo
-     * @return profumo aggiunto.
-     */
-    @PutMapping("/add")
+    @PostMapping("/create")
     public ResponseEntity<Profumo> addProfumo(@RequestBody Profumo profumo) {
         Profumo profumoAdded = profumoService.addProfumo(profumo);
         return ResponseEntity.ok().body(profumoAdded);
     }
-
-    /**
-     * @return mostra la lista completa dei profumi.
-     */
-    @GetMapping("/viewProfumi")
+    @GetMapping("/readAll")
     public ResponseEntity<List<Profumo>> getListaProfumo() {
         List<Profumo> profumoView = profumoService.getAllProfumi();
         return ResponseEntity.ok().body(profumoView);
     }
-
-    /**
-     * @param id con l'id cerca il profumo
-     * @return mostra il profumo trovato o se non esiste mostra "not found".
-     */
-    @GetMapping("/profumo/{id}")
+    @GetMapping("/readSingle/{id}")
     public ResponseEntity<Profumo> getProfumoId(@PathVariable Long id) {
         Optional<Profumo> profumoOptional = profumoService.getProfumoId(id);
         if (profumoOptional.isPresent()) {
@@ -46,12 +32,6 @@ public class ProfumoController {
         }
         return ResponseEntity.notFound().build();
     }
-
-    /**
-     * @param id      con l'id cerca i negozi
-     * @param profumo
-     * @return mostra il profumo aggiornato se c'è altrimenti mostra "not found"
-     */
     @PutMapping("/update/{id}")
     public ResponseEntity<Profumo> updateProfumo(@PathVariable Long id, @RequestBody Profumo profumo) {
         Optional<Profumo> profumoToUpdate = profumoService.updateProfumoId(id, profumo);
@@ -60,25 +40,15 @@ public class ProfumoController {
         }
         return ResponseEntity.notFound().build();
     }
-
-    /**
-     * @param id con l'id cerca i profumi
-     * @return mostra i profumi elminati se ci sono altrimenti mostra "not found"
-     */
-    @PutMapping("/deactive/{id}")
-    public ResponseEntity<Profumo> deactiveProfumo(@PathVariable Long id) {
-        Optional<Profumo> deactiveProfumo = profumoService.deactiveProfumoById(id);
+    @PutMapping("/delete/{id}")
+    public ResponseEntity<Profumo> deleteProfumo(@PathVariable Long id) {
+        Optional<Profumo> deactiveProfumo = profumoService.deleteProfumoById(id);
         if (deactiveProfumo.isPresent()) {
             return ResponseEntity.ok().body(deactiveProfumo.get());
         }
         return ResponseEntity.notFound().build();
     }
-
-
-    /**
-     * @return lista profumi con record status inattivo
-     */
-    @GetMapping("/inactive")
+    @GetMapping("/readInactive")
     public ResponseEntity<List<Profumo>> findByInactive() {
         Optional<List<Profumo>> listaProfumi = profumoService.getByRecordStatusInactive();
         if (listaProfumi.isEmpty()) {
@@ -86,16 +56,4 @@ public class ProfumoController {
         }
         return ResponseEntity.ok().body(listaProfumi.get());
     }
-
-//    /**
-//     * @return lista profumi con record status attivo
-//     */
-//    @GetMapping("/active")
-//    public ResponseEntity<List<Profumo>> findByActive() {
-//        Optional<List<Profumo>> listaProfumi = profumoService.getByRecordStatusActive();
-//        if (listaProfumi.isEmpty()) {
-//            return ResponseEntity.notFound().build();
-//        }
-//        return ResponseEntity.ok().body(listaProfumi.get());
-//    }
 }

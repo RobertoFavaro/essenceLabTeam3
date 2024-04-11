@@ -26,7 +26,7 @@ public class EssenzaService {
 
     /**
      *
-     * @return Ritorna la lista delle essenze;
+     * @return mostra la lista di tutte le essenze;
      */
     public List<Essenza> getAllEssenze(){
         return essenzaRepository.findAllActiveEssenza();
@@ -35,7 +35,7 @@ public class EssenzaService {
     /**
      *
      * @param id
-     * @return Ritorna l'essenza cercata tramite id;
+     * @return mostra l'essenza cercata tramite id;
      */
     public Optional<Essenza> getEssenzaId(Long id){
         return essenzaRepository.findById(id);
@@ -43,32 +43,35 @@ public class EssenzaService {
 
     /**
      *
-     * @param id per cercare l'essenza da aggiornare
      * @param essenza
-     * @return L'essenza aggiornata o un oggetto vuoto se non è presente
+     * @param id
+     * @return cerca l'essenza tramite l'id, la aggiorna e la
+     *         mostra aggiornata o se non è presente mostra un oggetto vuoto
      */
     public Optional<Essenza> updateEssenzaId(Long id,Essenza essenza){
         Optional<Essenza> updateEssenza = essenzaRepository.findById(id);
         if(updateEssenza.isPresent()){
-            updateEssenza.get().setAllergeni_essenza(essenza.getAllergeni_essenza());
-            updateEssenza.get().setDescrizione_essenza(essenza.getDescrizione_essenza());
-            updateEssenza.get().setNome_essenza(essenza.getNome_essenza());
-            updateEssenza.get().setIngredienti_essenza(essenza.getIngredienti_essenza());
+            updateEssenza.get().setAllergeni(essenza.getAllergeni());
+            updateEssenza.get().setDescrizione(essenza.getDescrizione());
+            updateEssenza.get().setNome(essenza.getNome());
+            updateEssenza.get().setIngredienti(essenza.getIngredienti());
             Essenza essenzaUpdate = essenzaRepository.save(updateEssenza.get());
             return Optional.of(essenzaUpdate);
         }else{
             return Optional.empty();
         }
     }
+
     /**
      *
      * @param id
-     * @return il recordStatusEnum diventa inattivo
+     * @return il recordStatusEnum dell'essenza inattiva
      */
-    public Optional<Essenza> deactiveEssenzaById(Long id) {
+    public Optional<Essenza> deleteEssenzaById(Long id) {
         Optional<Essenza> essenzaOptional = essenzaRepository.findById(id);
         if (essenzaOptional.isPresent()) {
             essenzaOptional.get().setRecordStatusEnum(RecordStatusEnum.I);
+            essenzaRepository.save(essenzaOptional.get());
         } else {
             return Optional.empty();
         }
