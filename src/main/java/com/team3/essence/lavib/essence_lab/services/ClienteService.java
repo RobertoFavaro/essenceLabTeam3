@@ -55,7 +55,6 @@ public class ClienteService {
             clienteOptional.get().setCognome(cliente.getCognome());
             clienteOptional.get().setEmail(cliente.getEmail());
             clienteOptional.get().setCodiceFiscale(cliente.getCodiceFiscale());
-            clienteOptional.get().setRecordStatusEnum(cliente.getRecordStatusEnum());
             clienteOptional.get().setEta(cliente.getEta());
             clienteOptional.get().setGenere(cliente.getGenere());
             Cliente clienteUpdated = clienteRepository.save(clienteOptional.get());
@@ -105,4 +104,25 @@ public class ClienteService {
         return listClient;
     }
 
+    /**
+     *
+     * @return tutti i clienti maggiorenni
+     */
+    public Optional<List<Cliente>> getClientiMaggiorenni(){
+        Optional<List<Cliente>> clienti = Optional.ofNullable(clienteRepository.findByEtaMaggiorenne());
+        if(clienti.isPresent()){
+            return clienti;
+        }else return Optional.empty();
+    }
+
+    /**
+     *
+     * @return tutti i clienti minorenni
+     */
+    public Optional<List<Cliente>> getClientiMinorenni(){
+        Optional<List<Cliente>> clienti = Optional.ofNullable(clienteRepository.findByEtaMinorenne());
+        if(clienti.isPresent()){
+            return clienti;
+        }else return Optional.empty();
+    }
 }

@@ -54,7 +54,6 @@ public class NegozioService {
             updateNegozio.get().setNome(negozio.getNome());
             updateNegozio.get().setLuogo(negozio.getLuogo());
             updateNegozio.get().setPartita_iva(negozio.getPartita_iva());
-            updateNegozio.get().setRecordStatusEnum(negozio.getRecordStatusEnum());
             Negozio negozioUpdate = negozioRepository.save(updateNegozio.get());
             return Optional.of(negozioUpdate);
         } else {

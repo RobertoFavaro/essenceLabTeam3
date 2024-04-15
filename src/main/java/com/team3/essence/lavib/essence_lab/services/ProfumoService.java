@@ -6,6 +6,7 @@ import com.team3.essence.lavib.essence_lab.repositories.ProfumoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -111,5 +112,22 @@ public class ProfumoService {
     public Optional<List<Profumo>> getByRecordStatusInactive() {
         Optional<List<Profumo>> listProfumi = Optional.ofNullable(profumoRepository.findByRecordStatusEnum(RecordStatusEnum.I));
         return listProfumi;
+    }
+
+    /**
+     *
+     * @param min
+     * @param max
+     * @return tutti i profumi nel range di prezzo
+     */
+    public List<Profumo> getByRangePrice(Double min, Double max){
+        List<Profumo> profumi = profumoRepository.findAllActiveProfumi();
+        List<Profumo> listaDiAppoggio = new ArrayList<>();
+        for (Profumo p : profumi) {
+            if (p.getPrezzo() <= max && p.getPrezzo() >= min){
+                listaDiAppoggio.add(p);
+            }
+        }
+        return listaDiAppoggio;
     }
 }

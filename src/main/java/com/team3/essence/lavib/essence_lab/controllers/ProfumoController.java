@@ -56,4 +56,9 @@ public class ProfumoController {
         }
         return ResponseEntity.ok().body(listaProfumi.get());
     }
+    @GetMapping("/readByPrice/{min}/{max}")
+    public ResponseEntity<List<Profumo>> findByPriza(@PathVariable Double min, @PathVariable Double max){
+        List<Profumo> profumoList = profumoService.getByRangePrice(min, max);
+        return ResponseEntity.ok().body(profumoList);
+    }
 }

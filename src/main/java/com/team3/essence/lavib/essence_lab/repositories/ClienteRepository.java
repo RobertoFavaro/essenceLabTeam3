@@ -16,5 +16,9 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     List<Cliente> findAllActiveCliente();
     @Query (value="SELECT * FROM cliente where cliente.id = :id and cliente.record_status = 'A'", nativeQuery = true)
     Optional<Cliente> findActiveClienteById(@Param("id") Long id);
+    @Query (value ="SELECT * FROM cliente where cliente.eta >= '18'", nativeQuery = true)
+    List<Cliente> findByEtaMaggiorenne();
+    @Query (value ="SELECT * FROM cliente where cliente.eta < '18'", nativeQuery = true)
+    List<Cliente> findByEtaMinorenne();
 }
 

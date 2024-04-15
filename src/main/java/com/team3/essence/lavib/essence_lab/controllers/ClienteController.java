@@ -60,4 +60,20 @@ public class ClienteController {
         }
         return ResponseEntity.ok().body(listClient.get());
     }
+    @GetMapping("/readMaggiorenni")
+    public ResponseEntity<List<Cliente>> findByMaggiorenni(){
+        Optional<List<Cliente>> listOptional = clienteService.getClientiMaggiorenni();
+        if (listOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(listOptional.get());
+    }
+    @GetMapping("/readMinorenni")
+    public ResponseEntity<List<Cliente>> findByMinorenni(){
+        Optional<List<Cliente>> listOptional = clienteService.getClientiMinorenni();
+        if (listOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(listOptional.get());
+    }
 }

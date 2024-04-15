@@ -11,15 +11,15 @@ import java.util.List;
 @Entity
 public class Negozio {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(nullable = false)
     private String nome;
     @Column(nullable = false)
     private String luogo;
-    @Column(nullable = false, unique = true)
-    private String indirizzo;
     @Column(nullable = false)
+    private String indirizzo;
+    @Column(nullable = false, unique = true)
     private String partita_iva;
     @OneToMany(mappedBy = "negozio")
     private List<Profumo> profumi;
