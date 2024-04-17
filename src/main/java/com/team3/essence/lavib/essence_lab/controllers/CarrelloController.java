@@ -16,7 +16,7 @@ import java.util.Optional;
 public class CarrelloController {
     @Autowired
     private CarrelloService carrelloService;
-    @GetMapping("/create")
+    @PostMapping("/create")
     public ResponseEntity<Carrello> postCarrello(@RequestBody Carrello carrello) {
         Carrello carrelloAdded = carrelloService.addCarrello(carrello);
         return ResponseEntity.ok().body(carrelloAdded);
