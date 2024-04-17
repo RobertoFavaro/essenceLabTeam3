@@ -3,6 +3,7 @@ package com.team3.essence.lavib.essence_lab.services;
 
 import com.team3.essence.lavib.essence_lab.Enum.RecordStatusEnum;
 import com.team3.essence.lavib.essence_lab.entities.Carrello;
+import com.team3.essence.lavib.essence_lab.entities.Profumo;
 import com.team3.essence.lavib.essence_lab.repositories.CarrelloRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -99,5 +100,26 @@ public class CarrelloService {
     public Optional<List<Carrello>> getByRecordStatusInactive(){
         Optional<List<Carrello>> listCarrello = Optional.ofNullable(carrelloRepository.findByRecordStatusEnum(RecordStatusEnum.I));
         return listCarrello;
+    }
+
+    /**
+     *
+     * @param id
+     * @return prezzo totale del carrello
+     */
+    public Optional<Carrello> calcoloPrezzoTotale(Long id){
+        Optional<Carrello> carrelloOptional = carrelloRepository.findById(id);
+        Double prezzoTotale = 0.0;
+        if (carrelloOptional.isPresent()) {
+            List<Profumo> profumoList = carrelloOptional.get().getProfumi();
+            for (Profumo profumo: profumoList) {
+                prezzoTotale += profumo.getPrezzo();
+                carrelloOptional.get().setPrezzoTotale(prezzoTotale);
+                carrelloRepository.save(carrelloOptional.get());
+            }
+        } else {
+            return Optional.empty();
+        }
+        return carrelloOptional;
     }
 }

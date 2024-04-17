@@ -60,4 +60,12 @@ public class CarrelloController {
         }
         return ResponseEntity.ok().body(listCarrello.get());
     }
+    @PutMapping("/totalPrice/{id}")
+    public ResponseEntity<Carrello> totalPrice(@PathVariable Long id){
+        Optional<Carrello> carrello = carrelloService.calcoloPrezzoTotale(id);
+        if (carrello.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(carrello.get());
+    }
 }
