@@ -1,5 +1,6 @@
 package com.team3.essence.lavib.essence_lab.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.team3.essence.lavib.essence_lab.Enum.EnumCategoriaProfumo;
 import com.team3.essence.lavib.essence_lab.Enum.EnumMarcaProfumo;
 import com.team3.essence.lavib.essence_lab.Enum.EnumTipoProfumo;
@@ -26,6 +27,7 @@ public class Profumo {
     @Column(nullable = false)
     private String allergeni;
     @OneToMany(mappedBy = "profumo")
+    @JsonIgnore
     private List<Essenza> essenze;
     @ManyToOne
     @JoinColumn(name = "negozio_id")
@@ -33,6 +35,7 @@ public class Profumo {
     @Enumerated(EnumType.STRING)
     @NotNull
     @Column(name = "record_status", nullable = false, length = 1)
+    @JsonIgnore
     private RecordStatusEnum recordStatusEnum =  RecordStatusEnum .A;
     @Enumerated(EnumType.STRING)
     private EnumTipoProfumo enumTipoProfumo;

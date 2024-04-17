@@ -21,7 +21,8 @@ public class ProfumoService {
      * @return Salva l'oggetto e lo ritorna;
      */
     public Profumo addProfumo(Profumo profumo) {
-        return profumoRepository.save(profumo);
+        Profumo profumoToSave = profumoRepository.save(profumo);
+        return profumoToSave;
     }
 
     /**
@@ -59,6 +60,8 @@ public class ProfumoService {
             profumoUpdate.get().setEnumMarcaProfumo(profumoToUpdate.getEnumMarcaProfumo());
             profumoUpdate.get().setEnumTipoProfumo(profumoToUpdate.getEnumTipoProfumo());
             profumoUpdate.get().setEssenze(profumoToUpdate.getEssenze());
+            profumoUpdate.get().setNegozio(profumoToUpdate.getNegozio());
+            profumoUpdate.get().setCarrello(profumoToUpdate.getCarrello());
             Profumo profumoUpdated = profumoRepository.save(profumoUpdate.get());
             return Optional.of(profumoUpdated);
         } else {

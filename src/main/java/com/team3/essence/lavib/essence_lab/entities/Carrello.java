@@ -1,5 +1,6 @@
 package com.team3.essence.lavib.essence_lab.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.team3.essence.lavib.essence_lab.Enum.RecordStatusEnum;
 import jakarta.persistence.*;
 import org.antlr.v4.runtime.misc.NotNull;
@@ -17,10 +18,13 @@ public class Carrello {
     @Enumerated(EnumType.STRING)
     @NotNull
     @Column(name = "record_status", nullable = false, length = 1)
+    @JsonIgnore
     private RecordStatusEnum recordStatusEnum = RecordStatusEnum.A;
     @OneToMany(mappedBy = "carrello")
+    @JsonIgnore
     private List<Profumo> profumi;
     @OneToMany(mappedBy = "carrello")
+    @JsonIgnore
     private List<Cliente> clienti;
     public Carrello(){}
 
