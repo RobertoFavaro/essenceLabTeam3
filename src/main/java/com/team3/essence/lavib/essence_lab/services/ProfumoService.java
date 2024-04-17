@@ -62,6 +62,7 @@ public class ProfumoService {
             profumoUpdate.get().setEssenze(profumoToUpdate.getEssenze());
             profumoUpdate.get().setNegozio(profumoToUpdate.getNegozio());
             profumoUpdate.get().setCarrello(profumoToUpdate.getCarrello());
+            profumoUpdate.get().setEnumCategoriaProfumo(profumoToUpdate.getEnumCategoriaProfumo());
             Profumo profumoUpdated = profumoRepository.save(profumoUpdate.get());
             return Optional.of(profumoUpdated);
         } else {

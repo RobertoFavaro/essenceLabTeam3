@@ -55,6 +55,9 @@ public class EssenzaService {
             updateEssenza.get().setDescrizione(essenza.getDescrizione());
             updateEssenza.get().setNome(essenza.getNome());
             updateEssenza.get().setIngredienti(essenza.getIngredienti());
+            updateEssenza.get().setPrezzo(essenza.getPrezzo());
+            updateEssenza.get().setProfumo(essenza.getProfumo());
+            updateEssenza.get().setEnumTipoEssenza(essenza.getEnumTipoEssenza());
             Essenza essenzaUpdate = essenzaRepository.save(updateEssenza.get());
             return Optional.of(essenzaUpdate);
         }else{

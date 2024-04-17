@@ -21,7 +21,7 @@ public class Negozio {
     @Column(nullable = false)
     private String indirizzo;
     @Column(nullable = false, unique = true)
-    private String partita_iva;
+    private String partitaIva;
     @OneToMany(mappedBy = "negozio")
     @JsonIgnore
     private List<Profumo> profumi;
@@ -38,7 +38,7 @@ public class Negozio {
         this.nome = nome_negozio;
         this.luogo = luogo_negozio;
         this.indirizzo = indirizzo_negozio;
-        this.partita_iva = partita_iva_negozio;
+        this.partitaIva = partita_iva_negozio;
         this.profumi = profumi;
         this.recordStatusEnum = recordStatusEnum;
     }
@@ -75,12 +75,12 @@ public class Negozio {
         this.indirizzo = indirizzo;
     }
 
-    public String getPartita_iva() {
-        return partita_iva;
+    public String getPartitaIva() {
+        return partitaIva;
     }
 
-    public void setPartita_iva(String partita_iva) {
-        this.partita_iva = partita_iva;
+    public void setPartitaIva(String partitaIva) {
+        this.partitaIva = partitaIva;
     }
 
     public List<Profumo> getProfumi() {

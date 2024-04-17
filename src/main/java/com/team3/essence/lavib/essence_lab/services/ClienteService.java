@@ -57,6 +57,8 @@ public class ClienteService {
             clienteOptional.get().setCodiceFiscale(cliente.getCodiceFiscale());
             clienteOptional.get().setEta(cliente.getEta());
             clienteOptional.get().setGenere(cliente.getGenere());
+            clienteOptional.get().setIndirizzo(cliente.getIndirizzo());
+            clienteOptional.get().setCarrello(cliente.getCarrello());
             Cliente clienteUpdated = clienteRepository.save(clienteOptional.get());
             return Optional.of(clienteUpdated);
         } else {
