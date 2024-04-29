@@ -1,5 +1,6 @@
 package com.team3.essence.lavib.essence_lab.services;
 
+import com.team3.essence.lavib.essence_lab.Enum.EnumMarcaProfumo;
 import com.team3.essence.lavib.essence_lab.Enum.RecordStatusEnum;
 import com.team3.essence.lavib.essence_lab.entities.Profumo;
 import com.team3.essence.lavib.essence_lab.repositories.ProfumoRepository;
@@ -16,7 +17,6 @@ public class ProfumoService {
     private ProfumoRepository profumoRepository;
 
     /**
-     *
      * @param profumo
      * @return Salva l'oggetto e lo ritorna;
      */
@@ -26,7 +26,6 @@ public class ProfumoService {
     }
 
     /**
-     *
      * @return mostra la lista di tutti i profumi;
      */
     public List<Profumo> getAllProfumi() {
@@ -34,7 +33,6 @@ public class ProfumoService {
     }
 
     /**
-     *
      * @param id
      * @return mostra il profumo cercato tramite id;
      */
@@ -43,11 +41,10 @@ public class ProfumoService {
     }
 
     /**
-     *
      * @param profumoToUpdate
      * @param id
      * @return cerca il profumo tramite l'id, lo aggiorna e lo
-     *         mostra aggiornato o se non è presente mostra un oggetto vuoto
+     * mostra aggiornato o se non è presente mostra un oggetto vuoto
      */
     public Optional<Profumo> updateProfumoId(Long id, Profumo profumoToUpdate) {
         Optional<Profumo> profumoUpdate = profumoRepository.findById(id);
@@ -71,7 +68,6 @@ public class ProfumoService {
     }
 
     /**
-     *
      * @param id
      * @return il recordStatusEnum del profumo inattivo
      */
@@ -87,7 +83,6 @@ public class ProfumoService {
     }
 
     /**
-     *
      * @param id
      * @return il recordStatusEnum del profumo attivo
      */
@@ -110,7 +105,6 @@ public class ProfumoService {
     }
 
     /**
-     *
      * @return tutti i profumi inattivi
      */
     public Optional<List<Profumo>> getByRecordStatusInactive() {
@@ -119,19 +113,23 @@ public class ProfumoService {
     }
 
     /**
-     *
      * @param min
      * @param max
      * @return tutti i profumi nel range di prezzo
      */
-    public List<Profumo> getByRangePrice(Double min, Double max){
+    public List<Profumo> getByRangePrice(Double min, Double max) {
         List<Profumo> profumi = profumoRepository.findAllActiveProfumi();
         List<Profumo> listaDiAppoggio = new ArrayList<>();
         for (Profumo p : profumi) {
-            if (p.getPrezzo() <= max && p.getPrezzo() >= min){
+            if (p.getPrezzo() <= max && p.getPrezzo() >= min) {
                 listaDiAppoggio.add(p);
             }
         }
         return listaDiAppoggio;
+    }
+
+    public List<Profumo> getByMarca(EnumMarcaProfumo enumMarcaProfumo) {
+        List<Profumo> profumi = profumoRepository.findByEnumMarcaProfumo(enumMarcaProfumo);
+        return profumi;
     }
 }

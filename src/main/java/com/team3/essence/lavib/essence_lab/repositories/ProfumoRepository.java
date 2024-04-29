@@ -1,5 +1,6 @@
 package com.team3.essence.lavib.essence_lab.repositories;
 
+import com.team3.essence.lavib.essence_lab.Enum.EnumMarcaProfumo;
 import com.team3.essence.lavib.essence_lab.Enum.RecordStatusEnum;
 import com.team3.essence.lavib.essence_lab.entities.Cliente;
 import com.team3.essence.lavib.essence_lab.entities.Profumo;
@@ -18,4 +19,7 @@ public interface ProfumoRepository extends JpaRepository<Profumo, Long> {
     List<Profumo> findAllActiveProfumi();
     @Query(value = "SELECT * FROM profumo where profumo.id = :id and profumo.record_status = 'A'", nativeQuery = true)
     Optional<Profumo> findActiveProfumiById(@Param("id") Long id);
+
+
+    List<Profumo> findByEnumMarcaProfumo(EnumMarcaProfumo enumMarcaProfumo);
 }

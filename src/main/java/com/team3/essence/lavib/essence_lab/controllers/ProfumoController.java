@@ -1,5 +1,6 @@
 package com.team3.essence.lavib.essence_lab.controllers;
 
+import com.team3.essence.lavib.essence_lab.Enum.EnumMarcaProfumo;
 import com.team3.essence.lavib.essence_lab.entities.Profumo;
 import com.team3.essence.lavib.essence_lab.services.ProfumoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,5 +61,10 @@ public class ProfumoController {
     public ResponseEntity<List<Profumo>> findByPriza(@PathVariable Double min, @PathVariable Double max){
         List<Profumo> profumoList = profumoService.getByRangePrice(min, max);
         return ResponseEntity.ok().body(profumoList);
+    }
+    @GetMapping("/readByMarca")
+    public ResponseEntity<List<Profumo>> readByMarca(@RequestParam EnumMarcaProfumo enumMarcaProfumo){
+        List<Profumo> profumi= profumoService.getByMarca(enumMarcaProfumo);
+        return ResponseEntity.ok().body(profumi);
     }
 }
