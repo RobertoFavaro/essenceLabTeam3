@@ -128,6 +128,11 @@ public class ProfumoService {
         return listaDiAppoggio;
     }
 
+    /**
+     *
+     * @param enumMarcaProfumo
+     * @return tutti i profumi con la marca inserita
+     */
     public List<Profumo> getByMarca(EnumMarcaProfumo enumMarcaProfumo) {
         List<Profumo> profumi = profumoRepository.findByEnumMarcaProfumo(enumMarcaProfumo);
         return profumi;

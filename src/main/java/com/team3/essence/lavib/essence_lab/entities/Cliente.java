@@ -26,7 +26,6 @@ public class Cliente {
     @Column(nullable = false)
     private String indirizzo;
     @Enumerated(EnumType.STRING)
-    @NotNull
     @Column(name = "record_status", nullable = false, length = 1)
     @JsonIgnore
     private RecordStatusEnum recordStatusEnum = RecordStatusEnum.A;

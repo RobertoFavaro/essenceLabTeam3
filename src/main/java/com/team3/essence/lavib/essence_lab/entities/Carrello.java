@@ -16,7 +16,6 @@ public class Carrello {
     private Long id;
     private Double prezzoTotale;
     @Enumerated(EnumType.STRING)
-    @NotNull
     @Column(name = "record_status", nullable = false, length = 1)
     @JsonIgnore
     private RecordStatusEnum recordStatusEnum = RecordStatusEnum.A;

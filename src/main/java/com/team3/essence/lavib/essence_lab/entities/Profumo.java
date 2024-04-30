@@ -33,7 +33,6 @@ public class Profumo {
     @JoinColumn(name = "negozio_id")
     private Negozio negozio;
     @Enumerated(EnumType.STRING)
-    @NotNull
     @Column(name = "record_status", nullable = false, length = 1)
     @JsonIgnore
     private RecordStatusEnum recordStatusEnum =  RecordStatusEnum .A;

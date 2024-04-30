@@ -26,7 +26,6 @@ public class Essenza {
     @JoinColumn(name = "profumo_id")
     private Profumo profumo;
     @Enumerated(EnumType.STRING)
-    @NotNull
     @Column(name = "record_status", nullable = false, length = 1)
     @JsonIgnore
     private RecordStatusEnum recordStatusEnum = RecordStatusEnum.A;
